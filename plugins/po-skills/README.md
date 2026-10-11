@@ -14,7 +14,7 @@ Skills for the product side of the work: from idea to spec to plan.
 ## Install
 
 ```
-/plugin install po-skills --marketplace <owner>/lippstack
+/plugin install po-skills --marketplace lippdev/lippstack
 ```
 
 ## Where they come from

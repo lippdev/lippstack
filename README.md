@@ -64,7 +64,7 @@ One step, from a clone of this repo:
 Or by hand:
 
 ```bash
-claude plugin marketplace add <owner>/lippstack
+claude plugin marketplace add lippdev/lippstack
 claude plugin install savvy-progress@lippstack
 claude plugin install stage-bar@lippstack
 claude plugin install done-ping@lippstack

@@ -16,5 +16,5 @@ It sits beside Claude Code's own status line (the `statusLine` setting) and does
 ## Install
 
 ```
-/plugin install where-line --marketplace <owner>/lippstack
+/plugin install where-line --marketplace lippdev/lippstack
 ```

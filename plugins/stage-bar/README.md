@@ -29,6 +29,6 @@ plays a five-stage bar that advances by itself.
 ## Install
 
 ```bash
-claude plugin marketplace add <owner>/lippstack
+claude plugin marketplace add lippdev/lippstack
 claude plugin install stage-bar@lippstack
 ```

@@ -13,7 +13,7 @@ Third-party design skills, copied here so they install with the rest of lippstac
 ## Install
 
 ```
-/plugin install design-skills --marketplace <owner>/lippstack
+/plugin install design-skills --marketplace lippdev/lippstack
 ```
 
 All are MIT licensed; each skill folder keeps its original `LICENSE`.

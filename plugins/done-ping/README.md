@@ -19,5 +19,5 @@ In `/config`:
 ## Install
 
 ```
-/plugin install done-ping --marketplace <owner>/lippstack
+/plugin install done-ping --marketplace lippdev/lippstack
 ```
