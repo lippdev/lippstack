@@ -1,0 +1,7 @@
+{
+  "name": "stage-bar",
+  "version": "0.1.0",
+  "description": "A colorful, animated progress bar above the prompt that tracks the stages of the task you asked for. Claude names the stages and moves the bar as it works.",
+  "author": { "name": "lippstack" },
+  "types": "./types/index.d.ts"
+}

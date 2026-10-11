@@ -1,0 +1,50 @@
+{
+  "name": "lippstack",
+  "owner": {
+    "name": "lipp"
+  },
+  "metadata": {
+    "description": "Mods and skills for Claude Code, tuned to how we work."
+  },
+  "plugins": [
+    {
+      "name": "savvy-progress",
+      "source": "./plugins/savvy-progress",
+      "description": "Mod: live agents panel with plan quota, tokens and time per subagent; one pixel Clawd costume per tier.",
+      "version": "1.2.0-lipp.1",
+      "category": "mod"
+    },
+    {
+      "name": "stage-bar",
+      "source": "./plugins/stage-bar",
+      "description": "Mod: animated, colorful progress bar above the prompt that tracks the stages of the task Claude is working on.",
+      "version": "0.1.0",
+      "category": "mod"
+    },
+    {
+      "name": "design-skills",
+      "source": "./plugins/design-skills",
+      "description": "Skills: apple-design (Emil Kowalski) and hallmark (Nutlope) for better-looking, Apple-style web UI.",
+      "version": "0.1.0",
+      "category": "skills"
+    },
+    {
+      "name": "superpowers",
+      "source": {
+        "source": "github",
+        "repo": "obra/superpowers"
+      },
+      "description": "Jesse Vincent's skills library: brainstorming, plans, TDD, systematic debugging, code review, worktrees. Tracks upstream.",
+      "category": "skills"
+    },
+    {
+      "name": "ponytail",
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      },
+      "description": "Lazy senior dev mode: the simplest code that works, YAGNI, stdlib first. Tracks upstream.",
+      "category": "skills"
+    }
+  ]
+}

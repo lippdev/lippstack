@@ -1,0 +1,6 @@
+{
+  "name": "design-skills",
+  "version": "0.1.0",
+  "description": "Design skills we use: apple-design (Emil Kowalski) for fluid, Apple-style motion and UI on the web, and hallmark (Nutlope) against generic AI-looking pages.",
+  "author": { "name": "lippstack" }
+}
