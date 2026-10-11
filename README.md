@@ -160,3 +160,7 @@ On by default in every session, at the `full` level.
 `savvy-progress` is a fork of [johnnyvizz/claude-kit](https://github.com/johnnyvizz/claude-kit/tree/main/plugins/savvy-progress), MIT licensed. Its original license is kept in [plugins/savvy-progress/LICENSE](plugins/savvy-progress/LICENSE).
 
 `apple-design` (Emil Kowalski) and `hallmark` (Hallmark contributors) are MIT licensed; their licenses sit in each skill folder. `brainstorming` and `writing-plans` come from Superpowers (Jesse Vincent, MIT); the license sits in each skill folder. `ponytail` (Dietrich Gebert, MIT) is not copied here. The PM skills (Dean Peters, CC BY-NC-SA 4.0) and the official Anthropic plugins are not copied here either.
+
+## License
+
+[MIT](LICENSE), for everything written here. Copied third-party work keeps its own license, noted above and kept in its folder.
