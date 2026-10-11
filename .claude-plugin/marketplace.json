@@ -29,12 +29,10 @@
       "category": "skills"
     },
     {
-      "name": "superpowers",
-      "source": {
-        "source": "github",
-        "repo": "obra/superpowers"
-      },
-      "description": "Jesse Vincent's skills library: brainstorming, plans, TDD, systematic debugging, code review, worktrees. Tracks upstream.",
+      "name": "po-skills",
+      "source": "./plugins/po-skills",
+      "description": "Skills: brainstorming (idea to approved design) and writing-plans (design to step-by-step plan), adapted from obra/superpowers.",
+      "version": "0.1.0",
       "category": "skills"
     },
     {
