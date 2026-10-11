@@ -22,17 +22,31 @@
       "category": "mod"
     },
     {
+      "name": "done-ping",
+      "source": "./plugins/done-ping",
+      "description": "Mod: macOS notification when a long task finishes or Claude is waiting for you.",
+      "version": "0.1.0",
+      "category": "mod"
+    },
+    {
+      "name": "where-line",
+      "source": "./plugins/where-line",
+      "description": "Mod: status line with project, git branch, model and context fill.",
+      "version": "0.1.0",
+      "category": "mod"
+    },
+    {
       "name": "design-skills",
       "source": "./plugins/design-skills",
-      "description": "Skills: apple-design (Emil Kowalski) and hallmark (Nutlope) for better-looking, Apple-style web UI.",
-      "version": "0.1.0",
+      "description": "Skills: apple-design, review-animations, break-ui, prototype (Emil Kowalski) and hallmark (Nutlope) for better-looking web UI.",
+      "version": "0.2.0",
       "category": "skills"
     },
     {
       "name": "po-skills",
       "source": "./plugins/po-skills",
-      "description": "Skills: brainstorming (idea to approved design) and writing-plans (design to step-by-step plan), adapted from obra/superpowers.",
-      "version": "0.1.0",
+      "description": "Skills: brainstorming and writing-plans (adapted from obra/superpowers), plus jira-stories and release-notes for Jira and Confluence.",
+      "version": "0.2.0",
       "category": "skills"
     },
     {

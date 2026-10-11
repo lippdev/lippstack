@@ -8,6 +8,8 @@ here="$(cd "$(dirname "$0")" && pwd)"
 claude plugin marketplace add "$here"
 claude plugin install savvy-progress@lippstack
 claude plugin install stage-bar@lippstack
+claude plugin install done-ping@lippstack
+claude plugin install where-line@lippstack
 claude plugin install design-skills@lippstack
 claude plugin install po-skills@lippstack
 
@@ -21,6 +23,12 @@ for skill in \
   prd-development prioritization-advisor roadmap-planning discovery-process \
   jobs-to-be-done problem-statement incoming-request-advisor stakeholder-mapping; do
   claude plugin install "$skill@pm-skills"
+done
+
+# Anthropic's official plugins.
+claude plugin marketplace add anthropics/claude-plugins-official
+for plugin in hookify claude-md-management session-report playwright; do
+  claude plugin install "$plugin@claude-plugins-official"
 done
 
 # Built into Claude Code: nothing to download, it only has to be switched on.
