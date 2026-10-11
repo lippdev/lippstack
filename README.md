@@ -2,6 +2,8 @@
 
 Mods and skills for Claude Code, tuned to how we work.
 
+By [Filipe Moreira](https://filipemoreira.top).
+
 ## Plugins
 
 | Plugin | Type | What it does |
