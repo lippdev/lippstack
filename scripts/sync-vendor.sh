@@ -10,7 +10,7 @@ trap 'rm -rf "$tmp"' EXIT
 # repo, path of the skill inside it, skill name here
 sync() {
   git clone -q --depth 1 "https://github.com/$1.git" "$tmp/$3"
-  rm -rf "$dest/$3"
+  rm -rf "${dest:?}/${3:?}"
   cp -R "$tmp/$3/$2" "$dest/$3"
   cp "$tmp/$3/LICENSE" "$dest/$3/LICENSE"
   echo "$3 <- $1 @ $(git -C "$tmp/$3" rev-parse --short HEAD)"

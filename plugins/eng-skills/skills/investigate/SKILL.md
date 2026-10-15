@@ -24,7 +24,7 @@ Follow this methodology strictly whenever diagnosing or fixing a bug.
 Before touching anything:
 - Identify the exact component, module, or files involved in the failure.
 - Mentally **freeze** the rest of the codebase: do NOT edit or refactor unrelated files.
-- If `/freeze` is available, lock edits to the relevant directory:
+- If `/freeze` is available (the lippstack guardrails mod on Claude Code), lock edits to the relevant directory:
   ```bash
   /freeze <target_directory>
   ```
@@ -79,7 +79,7 @@ Follow the 3-strike rule:
 
 Once the root cause is proven:
 1. **Write the regression test first:** Add an automated test that reproduces the bug. Run it and verify it **FAILS** for the identified root cause.
-2. **Apply the minimal fix:** Use `ponytail` style — the simplest code that does the job. Avoid refactoring unrelated abstractions.
+2. **Apply the minimal fix:** The simplest code that does the job (`ponytail` style, if installed). Avoid refactoring unrelated abstractions.
 3. **Verify the test passes:** Run the regression test and confirm it now **PASSES**.
 4. **Run the full test suite:** Ensure no other tests were broken by the fix.
 5. **Clean up:** Remove any temporary debug logs or prints.

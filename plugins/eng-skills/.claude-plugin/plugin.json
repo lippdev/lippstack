@@ -1,6 +1,6 @@
 {
   "name": "eng-skills",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Engineering, QA and delivery skills: investigate (systematic debugging with 3-strike rule), qa (exploratory verification with mandatory regression tests), and ship (pre-flight checks, doc sync, and PR creation).",
   "author": {
     "name": "lippstack"

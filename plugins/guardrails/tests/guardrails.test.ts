@@ -33,6 +33,14 @@ test('careful asks, and a block keeps the command from running', async ($, on) =
   expect(ran.deny).toContain('blocked')
 })
 
+test('careful refuses without asking when the session is not interactive', async ($, on) => {
+  const asked = engine(on, 'Run it')
+  await $.session.start({ ...start, isInteractive: false })
+  expect((await $.tool.call({ tool: 'Bash', command: 'rm -rf build' })).deny).toContain('cannot ask')
+  expect((await $.tool.call({ tool: 'Bash', command: 'ls' })).deny).toBeUndefined()
+  expect(asked.length).toBe(0)
+})
+
 test('careful lets the command run once approved, and /careful off stops asking', async ($, on) => {
   const asked = engine(on, 'Run it')
   await $.session.start(start)
