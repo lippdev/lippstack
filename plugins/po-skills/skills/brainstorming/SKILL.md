@@ -80,6 +80,22 @@ time...", "If it could only do one of these well, which?", "What would
 make you wince if I got it wrong?" A guess they can correct ("I'm
 guessing this is because X keeps biting you?") often beats a question.
 
+### Forcing Questions & Scope Calibration (YC Style)
+
+When scoping a new feature, product, or major architectural change, use these
+forcing perspectives to challenge premises and avoid building the wrong thing:
+
+1. **The 10-Star Experience:** *"If this were 10x better and magically effortless for the user, what would happen?"* (Surfaces the true north and what's currently friction).
+2. **The Narrowest Wedge:** *"What is the absolute smallest slice of this we could build that still provides undeniable value?"* (Cuts bloated requirements).
+3. **Desperate Specificity:** *"Who desperately needs this today, and what painful workaround are they living with right now?"* (Exposes theoretical vs real demand).
+4. **The Elimination Test:** *"What can we completely eliminate, automate, or refuse to build?"* (Keeps the product lean and YAGNI).
+
+When presenting options during brainstorming, explicitly label the scope mode:
+- **Reduction / MVP:** The leanest version that works.
+- **Hold Scope:** Exactly what was requested, cleanly done.
+- **Selective Expansion:** High-leverage addition with minimal extra complexity.
+- **10-Star Vision:** The transformative long-term option.
+
 **Offer recon.** Once you have a bit of grounding and looking would help,
 offer to go look: their codebase or project, their own files and data,
 or the web. Say what you'd look for. They decide whether you go.

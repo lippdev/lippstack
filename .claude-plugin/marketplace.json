@@ -46,8 +46,15 @@
     {
       "name": "po-skills",
       "source": "./plugins/po-skills",
-      "description": "Skills: brainstorming and writing-plans (adapted from obra/superpowers), plus jira-stories and release-notes for Jira and Confluence.",
-      "version": "0.2.0",
+      "description": "Skills: brainstorming (with YC forcing questions) and writing-plans (with decision briefs and ponytail debt tracking), plus jira-stories and release-notes.",
+      "version": "0.3.0",
+      "category": "skills"
+    },
+    {
+      "name": "eng-skills",
+      "source": "./plugins/eng-skills",
+      "description": "Skills: investigate (root cause debugging, 3-strike rule), qa (exploratory verification with mandatory regression tests), ship (pre-flight checks, doc sync, PR), freeze and careful.",
+      "version": "0.1.0",
       "category": "skills"
     },
     {

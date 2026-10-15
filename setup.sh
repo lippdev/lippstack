@@ -12,6 +12,7 @@ claude plugin install done-ping@lippstack
 claude plugin install where-line@lippstack
 claude plugin install design-skills@lippstack
 claude plugin install po-skills@lippstack
+claude plugin install eng-skills@lippstack
 
 # Third-party plugin, pulled from its own GitHub repo so it stays current.
 claude plugin install ponytail@lippstack

@@ -18,10 +18,11 @@ By [Filipe Moreira](https://filipemoreira.top).
 | Plugin | Source | What it does |
 | :- | :- | :- |
 | [design-skills](plugins/design-skills) | Copied here | From [Emil Kowalski](https://github.com/emilkowalski/skills): `apple-design` (Apple-style motion, gestures and materials on the web), `review-animations`, `break-ui` (worst-case data) and `prototype` (several versions behind a picker). `hallmark` ([Nutlope](https://github.com/nutlope/hallmark)): pages that don't look AI-generated, with `audit`, `redesign` and `study`. |
-| [po-skills](plugins/po-skills) | Ours, plus two adapted | `jira-stories` and `release-notes` (ours): stories into Jira, finished work into release notes on Confluence. `brainstorming` and `writing-plans` from [obra/superpowers](https://github.com/obra/superpowers): idea to approved design, design to step-by-step plan, without the rest of Superpowers or its start-of-session hook. |
+| [po-skills](plugins/po-skills) | Ours, plus two adapted | `jira-stories` and `release-notes` (ours): stories into Jira, finished work into release notes on Confluence. `brainstorming` (enriched with YC forcing questions) and `writing-plans` (with Decision Briefs and Ponytail debt tracking) from [obra/superpowers](https://github.com/obra/superpowers). |
+| [eng-skills](plugins/eng-skills) | Ours | Engineering, QA & delivery: `investigate` (systematic root cause debugging with the 3-strike rule), `qa` (exploratory verification across UI/API/CLI with mandatory regression tests), `ship` (pre-flight checks, doc sync, PR), `freeze` (scope boundary lock), and `careful` (destructive command guardrails). |
 | ponytail | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | Lazy senior dev mode: the simplest code that works. YAGNI, stdlib first, no unrequested abstractions. Commands `/ponytail-audit`, `/ponytail-review` and more. |
 
-`design-skills` is copied into this repo; refresh it with [scripts/sync-vendor.sh](scripts/sync-vendor.sh). `po-skills` is edited by hand, see [its README](plugins/po-skills/README.md). `ponytail` is listed in our marketplace but installs straight from its own repo, so it always gets upstream updates.
+`design-skills` is copied into this repo; refresh it with [scripts/sync-vendor.sh](scripts/sync-vendor.sh). `po-skills` and `eng-skills` are maintained in this repo. `ponytail` is listed in our marketplace but installs straight from its own repo, so it always gets upstream updates.
 
 ### PM skills by Dean Peters
 
@@ -73,6 +74,7 @@ claude plugin install done-ping@lippstack
 claude plugin install where-line@lippstack
 claude plugin install design-skills@lippstack
 claude plugin install po-skills@lippstack
+claude plugin install eng-skills@lippstack
 claude plugin install ponytail@lippstack
 ```
 
@@ -80,11 +82,11 @@ Then restart Claude Code, or run `/reload-plugins` in an open session.
 
 ## How to use
 
-Skills load on their own when a request matches their description. To make sure one runs, name it in the request ("use user-story to…") or type `/` and pick it from the list; plugin skills show up as `plugin:skill`, for example `/po-skills:brainstorming`.
+Skills load on their own when a request matches their description. To make sure one runs, name it in the request ("use user-story to…") or type `/` and pick it from the list; plugin skills show up as `plugin:skill`, for example `/po-skills:brainstorming` or `/eng-skills:investigate`.
 
 ### From idea to shipped feature
 
-The skills are meant to be used in this order. Skip the steps a small task doesn't need: a one-line fix goes straight to step 5.
+The skills are meant to be used in this order. Skip the steps a small task doesn't need: a one-line fix goes straight to step 7.
 
 | Step | Use | Ask something like | You get |
 | :- | :- | :- | :- |
@@ -92,11 +94,12 @@ The skills are meant to be used in this order. Skip the steps a small task doesn
 | 2. Frame the problem | `problem-statement`, `jobs-to-be-done`, `discovery-process` | "Write a problem statement for investors who can't find their portfolio report" | Who has the problem, what it costs them, how you'd know it's solved |
 | 3. Decide what to build | `prd-development`, `prioritization-advisor`, `roadmap-planning` | "Turn this into a PRD" / "Help me prioritize these 8 items for Q1" | A PRD with success criteria; a framework picked for your context and a ranked list |
 | 4. Shape the work | `epic-hypothesis`, `epic-breakdown-advisor`, `jira-stories` | "Break epic INV-120 into stories and create them in Jira" | Stories with Gherkin criteria in the team's style, created under the epic after you approve |
-| 5. Design the build | `brainstorming` | "Let's build an export-to-PDF button for the report" | Questions one at a time, a size for the work, and a design doc in `docs/specs/` for approval |
-| 6. Plan the build | `writing-plans` | "Write the plan for the approved design" | Small tasks with files, names and tests, in `docs/plans/`, and a choice of how to run them |
-| 7. Build it | `ponytail` (always on) | "Run the plan" | The smallest code that does the job, and a closing line on what was skipped and the risk |
-| 8. Check it | `/ponytail-review`, `hallmark audit`, `break-ui`, `playwright` | "/ponytail-review" / "break the portfolio card" / "open the page and test the flow" | Ranked problems; the screen under worst-case data; the flow tried in a real browser |
-| 9. Tell people | `release-notes` | "Release notes for sprint 42 of INV" | A team version and a business version, published to Confluence after you approve |
+| 5. Design the build | `brainstorming` | "Let's build an export-to-PDF button for the report" | Questions one at a time with YC forcing perspectives (10-star, narrowest wedge, elimination), a size for the work, and a design doc in `docs/specs/` |
+| 6. Plan the build | `writing-plans` | "Write the plan for the approved design" | Small tasks with files, names and tests in `docs/plans/`, plus Decision Briefs and Ponytail `shortcut:` debt tags |
+| 7. Build it | `ponytail` (always on), `/freeze`, `investigate` | "Run the plan" / "investigate why the worker crashes" | Smallest code that does the job. When debugging: Iron Law (root cause first, 3-strike rule) and scope freezing |
+| 8. Verify it | `qa`, `/ponytail-review`, `hallmark audit`, `break-ui` | "QA this new endpoint" / "break the portfolio card" / "/ponytail-review" | Adversarial exploration beyond happy path; mandatory automated regression tests for any bug found; visual & code reviews |
+| 9. Ship it | `ship` | "Ship this feature" | Pre-flight git cleanliness, full test pass, Diataxis doc synchronization, atomic commit, push and PR |
+| 10. Tell people | `release-notes` | "Release notes for sprint 42 of INV" | A team version and a business version, published to Confluence after you approve |
 
 ### Product (PM skills)
 
@@ -114,10 +117,23 @@ Both need the Atlassian connector, and both show you the result before touching 
 
 ### Brainstorming and plans
 
-- `brainstorming` asks one question at a time. Answer briefly; say "skip the questions" to go straight to a draft.
-- It sizes the work first: a quick task is just done, a small one is agreed in chat, and only a project gets a written design.
-- For anything visual it can open a local page (`localhost`) with mockups side by side. It asks first.
-- `writing-plans` ends by asking how to run the plan: **subagent-driven** (one fresh agent per task plus a review after each, slower and more thorough) or **native** (this session does it, one review at the end, faster and cheaper).
+- `brainstorming` asks one question at a time. It uses YC-style forcing questions to uncover the **10-star vision**, the **narrowest wedge** (minimum slice of value), and what can be **eliminated** completely.
+- It sizes the work first: a quick task is just done, a small one is agreed in chat, and only a project gets a written design in `docs/specs/`.
+- For anything visual it can open a local page (`localhost`) with mockups side by side.
+- `writing-plans` produces bite-sized, testable tasks in `docs/plans/`. If architectural trade-offs or intentional shortcuts are taken, it frames a Decision Brief and marks the code with `shortcut: <reason>`, connecting straight into `ponytail-debt`.
+- At the end it asks how to run the plan: **subagent-driven** (one fresh agent per task plus review) or **native** (this session does it, review at the end).
+
+### Engineering, QA and Delivery (`eng-skills`)
+
+Professional development practices built directly into the agent workflow:
+
+| Command / Skill | Methodology |
+| :- | :- |
+| `investigate` | **The Iron Law of Debugging**: No fixes without proven root cause. Traces data flow backward. Enforces the **3-strike rule**: if 3 fix attempts fail, the agent hard-stops, admits the mental model was incomplete, and asks for guidance instead of thrashing. |
+| `qa` | **Exploratory Verification**: Systematically tests beyond the happy path (empty values, hostile inputs, duplicate clicks, interruptions). Enforces the **Golden Regression Rule**: every bug found must have an automated test that fails before the fix and passes after. |
+| `ship` | **Pre-flight & Delivery**: Sychronizes base branch, runs tests and typechecks, performs a Diataxis documentation sanity check (ensuring README/specs/docs match code changes), creates an atomic commit and opens a PR. |
+| `freeze <path>` | **Scope Boundary**: Locks edits to a specific directory so the agent cannot accidentally modify or "fix" unrelated files. |
+| `careful` | **Destructive Command Guardrail**: Warns and requests explicit confirmation before running dangerous commands (`rm -rf`, `DROP TABLE`, `git reset --hard`, force-push). |
 
 ### Ponytail
 
@@ -158,9 +174,3 @@ On by default in every session, at the `full` level.
 ## Credits
 
 `savvy-progress` is a fork of [johnnyvizz/claude-kit](https://github.com/johnnyvizz/claude-kit/tree/main/plugins/savvy-progress), MIT licensed. Its original license is kept in [plugins/savvy-progress/LICENSE](plugins/savvy-progress/LICENSE).
-
-`apple-design` (Emil Kowalski) and `hallmark` (Hallmark contributors) are MIT licensed; their licenses sit in each skill folder. `brainstorming` and `writing-plans` come from Superpowers (Jesse Vincent, MIT); the license sits in each skill folder. `ponytail` (Dietrich Gebert, MIT) is not copied here. The PM skills (Dean Peters, CC BY-NC-SA 4.0) and the official Anthropic plugins are not copied here either.
-
-## License
-
-[MIT](LICENSE), for everything written here. Copied third-party work keeps its own license, noted above and kept in its folder.

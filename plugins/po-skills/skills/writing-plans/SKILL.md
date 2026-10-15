@@ -135,6 +135,28 @@ git commit -m "feat: add specific feature"
 ```
 ````
 
+## Decision Briefs & Technical Debt Shortcuts
+
+When an architectural or implementation choice involves a significant trade-off,
+record a Decision Brief in the plan:
+
+```markdown
+### Decision Brief: [Title]
+- **ELI10:** [Plain explanation in 1-2 sentences of what is being decided]
+- **Stakes:** [What breaks or what is lost if we choose incorrectly]
+- **Completeness:** [Rate options 1-10: 10 = complete solution, 7 = clean happy path, 3 = rough shortcut]
+- **Recommendation:** [Chosen approach and rationale]
+```
+
+### The Ponytail Shortcut Rule
+If a chosen task or step takes an intentional shortcut (Completeness ≤ 7) for speed or simplicity:
+- **Do not hide it.**
+- Explicitly annotate the code at implementation time with a `shortcut:` comment:
+  ```ts
+  // shortcut: in-memory state only, upgrade to Redis when multi-instance is needed
+  ```
+- This directly links into ponytail's debt ledger (`/ponytail-debt`) so trade-offs are transparent and tracked.
+
 ## What a Step Contains
 
 A step is done when the implementer can write exactly one reasonable thing
