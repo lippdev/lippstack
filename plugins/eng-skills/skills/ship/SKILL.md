@@ -1,6 +1,7 @@
 ---
 name: ship
 description: Pre-flight release workflow. Verifies clean git status, runs test suites, checks documentation synchronization (Diataxis sanity check), creates atomic commit, pushes branch, and opens a Pull Request.
+disable-model-invocation: true
 argument-hint: "[optional PR title or target branch]"
 ---
 

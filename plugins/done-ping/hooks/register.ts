@@ -40,7 +40,7 @@ export const register: Register = (on, options) => {
   let project = 'Claude'
 
   on('session.start', async ($, e, next) => {
-    project = e.cwd.split('/').filter(Boolean).pop() ?? project
+    project = e.cwd.split(/[\\/]/).filter(Boolean).pop() ?? project
     return next(e)
   })
 

@@ -8,8 +8,14 @@ if (-not (Get-Command claude -ErrorAction SilentlyContinue)) {
 
 $here = $PSScriptRoot
 
+# "Stop" doesn't cover native commands, so check claude's exit code ourselves.
+function Invoke-Claude {
+    & claude @args
+    if ($LASTEXITCODE -ne 0) { throw "claude $args failed (exit $LASTEXITCODE)" }
+}
+
 Write-Host "==> Registering lippstack marketplace..." -ForegroundColor Cyan
-claude plugin marketplace add "$here"
+Invoke-Claude plugin marketplace add "$here"
 
 $lippPlugins = @(
     "savvy-progress@lippstack",
@@ -24,14 +30,14 @@ $lippPlugins = @(
 Write-Host "==> Installing lippstack plugins and skills..." -ForegroundColor Cyan
 foreach ($plugin in $lippPlugins) {
     Write-Host "Installing $plugin..." -ForegroundColor Gray
-    claude plugin install $plugin
+    Invoke-Claude plugin install $plugin
 }
 
 Write-Host "==> Installing ponytail..." -ForegroundColor Cyan
-claude plugin install ponytail@lippstack
+Invoke-Claude plugin install ponytail@lippstack
 
 Write-Host "==> Registering PM skills marketplace..." -ForegroundColor Cyan
-claude plugin marketplace add deanpeters/Product-Manager-Skills
+Invoke-Claude plugin marketplace add deanpeters/Product-Manager-Skills
 
 $pmSkills = @(
     "user-story", "user-story-splitting", "epic-breakdown-advisor", "epic-hypothesis",
@@ -41,19 +47,19 @@ $pmSkills = @(
 
 foreach ($skill in $pmSkills) {
     Write-Host "Installing $skill@pm-skills..." -ForegroundColor Gray
-    claude plugin install "$skill@pm-skills"
+    Invoke-Claude plugin install "$skill@pm-skills"
 }
 
 Write-Host "==> Registering official plugins..." -ForegroundColor Cyan
-claude plugin marketplace add anthropics/claude-plugins-official
+Invoke-Claude plugin marketplace add anthropics/claude-plugins-official
 
 $officialPlugins = @("hookify", "claude-md-management", "session-report", "playwright")
 foreach ($plugin in $officialPlugins) {
     Write-Host "Installing $plugin@claude-plugins-official..." -ForegroundColor Gray
-    claude plugin install "$plugin@claude-plugins-official"
+    Invoke-Claude plugin install "$plugin@claude-plugins-official"
 }
 
 Write-Host "==> Enabling built-in plugins..." -ForegroundColor Cyan
-claude plugin enable cc-plugin-you-should-know@builtin
+Invoke-Claude plugin enable cc-plugin-you-should-know@builtin
 
 Write-Host "`nDone! Restart Claude Code, or run /reload-plugins in an open session." -ForegroundColor Green

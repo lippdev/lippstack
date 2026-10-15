@@ -40,7 +40,7 @@ export const register: Register = on => {
 
   on('session.start', async ($, e, next) => {
     const started = await next(e)
-    line.project = e.cwd.split('/').filter(Boolean).pop() ?? e.cwd
+    line.project = e.cwd.split(/[\\/]/).filter(Boolean).pop() ?? e.cwd
     await refresh($, line)
     return started
   })

@@ -66,7 +66,7 @@ Follow the 3-strike rule:
 - **Strike 1:** If your first verified fix does not resolve the issue, STOP. Re-evaluate your hypothesis. Do not immediately try a second guess.
 - **Strike 2:** If the second attempt fails, review all assumptions and data flow again from scratch.
 - **Strike 3:** **HARD STOP.** Do not attempt a 4th fix.
-  - Revert changes to a clean state.
+  - Revert your own attempted fixes (only the edits you made; never `git reset --hard` or `git checkout .` over the user's uncommitted work).
   - Report to the user:
     1. What the exact symptom is.
     2. What was learned from the 3 attempts.

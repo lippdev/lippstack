@@ -1,6 +1,7 @@
 ---
 name: freeze
 description: Restrict file edits to a specific directory or module for the duration of a task or bugfix. Prevents accidental modifications to unrelated parts of the codebase.
+disable-model-invocation: true
 argument-hint: "<directory or file path>"
 ---
 

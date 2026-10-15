@@ -1,7 +1,7 @@
 {
   "name": "done-ping",
-  "version": "0.1.0",
-  "description": "A macOS notification when Claude finishes a long task or is waiting for you (a permission, a question).",
+  "version": "0.1.1",
+  "description": "A desktop notification when Claude finishes a long task or is waiting for you (a permission, a question).",
   "author": { "name": "lippstack" },
   "userConfig": {
     "minSeconds": {
@@ -13,7 +13,7 @@
     "sound": {
       "type": "string",
       "title": "Sound",
-      "description": "macOS sound played with the notification, or none",
+      "description": "macOS sound played with the notification, or none (ignored on Linux and Windows)",
       "default": "Glass",
       "options": ["Glass", "Ping", "Pop", "Hero", "Submarine", "none"]
     }

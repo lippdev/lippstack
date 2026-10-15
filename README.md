@@ -69,8 +69,10 @@ From a clone of this repo:
 ### Windows (PowerShell)
 
 ```powershell
-.\setup.ps1
+powershell -ExecutionPolicy Bypass -File .\setup.ps1
 ```
+
+The `-ExecutionPolicy Bypass` applies only to this run; Windows blocks unsigned scripts by default.
 
 ### Or by hand
 
@@ -175,7 +177,7 @@ On by default in every session, at the `full` level.
 
 - `/agents-info` opens or closes the panel of subagents and plan quota.
 - The stage bar appears by itself on tasks with 3 or more steps. `/stages-demo` shows it.
-- `done-ping` needs nothing: walk away during a long task and the Mac tells you when it's done or stuck on a question. Change the threshold and sound in `/config`. The first one may ask macOS for permission.
+- `done-ping` needs nothing: walk away during a long task and you get a notification when it's done or stuck on a question. Change the threshold and sound in `/config`. On macOS the first one may ask for permission; on Linux and Windows it depends on the terminal supporting notifications.
 - `where-line` sits under the prompt. When the dot turns 🔴, finish up or start a new session before the context compacts.
 - `/hookify` when Claude keeps doing something you don't want; `session-report` when you want to know where the plan went.
 

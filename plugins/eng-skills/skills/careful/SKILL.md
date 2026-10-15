@@ -1,6 +1,7 @@
 ---
 name: careful
 description: Safety guardrails for destructive terminal commands. Warns and pauses for explicit user confirmation before running destructive operations like rm -rf, DROP TABLE, git reset --hard, or force-push.
+disable-model-invocation: true
 argument-hint: "[on | off | status]"
 ---
 

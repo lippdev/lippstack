@@ -1,6 +1,6 @@
 {
   "name": "where-line",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A status line under the prompt: project, git branch, model and how full the context is.",
   "author": { "name": "lippstack" }
 }

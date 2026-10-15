@@ -25,15 +25,15 @@
     {
       "name": "done-ping",
       "source": "./plugins/done-ping",
-      "description": "Mod: macOS notification when a long task finishes or Claude is waiting for you.",
-      "version": "0.1.0",
+      "description": "Mod: desktop notification when a long task finishes or Claude is waiting for you.",
+      "version": "0.1.1",
       "category": "mod"
     },
     {
       "name": "where-line",
       "source": "./plugins/where-line",
       "description": "Mod: status line with project, git branch, model and context fill.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "mod"
     },
     {
@@ -54,7 +54,7 @@
       "name": "eng-skills",
       "source": "./plugins/eng-skills",
       "description": "Skills: investigate (root cause debugging, 3-strike rule), qa (exploratory verification with mandatory regression tests), ship (pre-flight checks, doc sync, PR), freeze and careful.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "skills"
     },
     {
