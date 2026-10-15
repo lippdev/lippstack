@@ -10,7 +10,7 @@ By [Filipe Moreira](https://filipemoreira.top).
 | :- | :- | :- |
 | [savvy-progress](plugins/savvy-progress) | Mod | `/agents-info` opens a live panel of subagents with model, context, tokens and time, plus the account's plan quota (5-hour and weekly). Each tier gets its own pixel Clawd costume. |
 | [stage-bar](plugins/stage-bar) | Mod | An animated bar above the prompt that tracks the stages of your task, one color per stage. Claude names the stages and moves the bar as it works. Try `/stages-demo`. |
-| [done-ping](plugins/done-ping) | Mod | A macOS notification when a task of a minute or more finishes, or when Claude is waiting for a permission or your answer. |
+| [done-ping](plugins/done-ping) | Mod | A notification when a task of a minute or more finishes, or when Claude is waiting for a permission or your answer (macOS Notification Center / Linux & Windows terminal notification channel). |
 | [where-line](plugins/where-line) | Mod | A status line under the prompt: project, git branch, model and how full the context is (🟢 🟡 🔴). |
 
 ## Skills
@@ -54,17 +54,25 @@ From [anthropics/claude-plugins-official](https://github.com/anthropics/claude-p
 | :- | :- |
 | `cc-plugin-you-should-know` | A side agent that reads what Claude writes and shows a note above the prompt when it spots something you might miss, such as a retry that could charge a customer twice. Off by default, it uses a bit more of the plan, and it stays quiet on a strong model unless it finds something. |
 
-It ships inside Claude Code, so there is nothing to copy here: [setup.sh](setup.sh) just switches it on.
+It ships inside Claude Code, so there is nothing to copy here: [setup.sh](setup.sh) / [setup.ps1](setup.ps1) just switches it on.
 
 ## Install
 
-One step, from a clone of this repo:
+From a clone of this repo:
+
+### macOS / Linux
 
 ```bash
 ./setup.sh
 ```
 
-Or by hand:
+### Windows (PowerShell)
+
+```powershell
+.\setup.ps1
+```
+
+### Or by hand
 
 ```bash
 claude plugin marketplace add lippdev/lippstack

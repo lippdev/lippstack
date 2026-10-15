@@ -1,23 +1,31 @@
 #!/usr/bin/env bash
-# Installs the lippstack mods on this machine. Run it from the repo folder.
+# Installs the lippstack mods on macOS and Linux. Run it from the repo folder.
 set -euo pipefail
+
+# Check for claude CLI
+if ! command -v claude >/dev/null 2>&1; then
+  echo "Error: 'claude' CLI is not found in PATH. Please install Claude Code first." >&2
+  exit 1
+fi
 
 here="$(cd "$(dirname "$0")" && pwd)"
 
-# Our marketplace (this folder) and the mods it ships.
+echo "==> Registering lippstack marketplace..."
 claude plugin marketplace add "$here"
-claude plugin install savvy-progress@lippstack
-claude plugin install stage-bar@lippstack
-claude plugin install done-ping@lippstack
-claude plugin install where-line@lippstack
-claude plugin install design-skills@lippstack
-claude plugin install po-skills@lippstack
-claude plugin install eng-skills@lippstack
+
+echo "==> Installing lippstack plugins and skills..."
+for plugin in \
+  savvy-progress stage-bar done-ping where-line \
+  design-skills po-skills eng-skills; do
+  claude plugin install "${plugin}@lippstack"
+done
 
 # Third-party plugin, pulled from its own GitHub repo so it stays current.
+echo "==> Installing ponytail..."
 claude plugin install ponytail@lippstack
 
 # Dean Peters' PM skills (CC BY-NC-SA 4.0): from their own marketplace, only the ones we use.
+echo "==> Registering PM skills marketplace..."
 claude plugin marketplace add deanpeters/Product-Manager-Skills
 for skill in \
   user-story user-story-splitting epic-breakdown-advisor epic-hypothesis \
@@ -27,12 +35,15 @@ for skill in \
 done
 
 # Anthropic's official plugins.
+echo "==> Registering official plugins..."
 claude plugin marketplace add anthropics/claude-plugins-official
 for plugin in hookify claude-md-management session-report playwright; do
   claude plugin install "$plugin@claude-plugins-official"
 done
 
 # Built into Claude Code: nothing to download, it only has to be switched on.
+echo "==> Enabling built-in plugins..."
 claude plugin enable cc-plugin-you-should-know@builtin
 
-echo "Done. Restart Claude Code, or run /reload-plugins in an open session."
+echo ""
+echo "Done! Restart Claude Code, or run /reload-plugins in an open session."
