@@ -40,7 +40,7 @@
       "name": "guardrails",
       "source": "./plugins/guardrails",
       "description": "Mod: /careful asks before destructive shell commands; /freeze <path> blocks edits outside a folder. Enforced by hooks.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "mod"
     },
     {

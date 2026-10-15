@@ -49,10 +49,12 @@ async function outsideFreeze($: Engine, cwd: string, path: string): Promise<{ de
 
 export const register: Register = on => {
   let cwd = '/'
+  let interactive = true
 
   on('session.start', async ($, e, next) => {
     const started = await next(e)
     cwd = e.cwd
+    interactive = e.isInteractive
     await $.command.register({ name: 'careful', description: 'Ask before destructive shell commands: on, off, or status (default on)' })
     await $.command.register({ name: 'freeze', description: 'Confine file edits to a folder: /freeze <path>, /freeze off, or /freeze for status' })
     return started
@@ -61,6 +63,8 @@ export const register: Register = on => {
   on('tool.call', { tool: 'Bash' }, async ($, e, next) => {
     const risk = riskOf(e.command)
     if (!risk || !(await read($, careful))) return next(e)
+    // Hosts without a prompt (SDK, T3 Code, CI) fail the whole turn on a question, so refuse instead.
+    if (!interactive) return { deny: `guardrails: this command ${risk}, and this session cannot ask the user. Use a safer alternative, or ask the user in chat to run it or turn /careful off.` }
     const shown = e.command.length > 160 ? `${e.command.slice(0, 159)}…` : e.command
     const answer = await $.ui.ask(`This command ${risk}: \`${shown}\`. Run it?`, { header: 'careful', options: [RUN, 'Block it'] }).catch(() => 'Block it')
     if (answer === RUN) return next(e)
