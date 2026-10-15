@@ -22,6 +22,7 @@ $lippPlugins = @(
     "stage-bar@lippstack",
     "done-ping@lippstack",
     "where-line@lippstack",
+    "guardrails@lippstack",
     "design-skills@lippstack",
     "po-skills@lippstack",
     "eng-skills@lippstack"

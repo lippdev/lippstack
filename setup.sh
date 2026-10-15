@@ -15,7 +15,7 @@ claude plugin marketplace add "$here"
 
 echo "==> Installing lippstack plugins and skills..."
 for plugin in \
-  savvy-progress stage-bar done-ping where-line \
+  savvy-progress stage-bar done-ping where-line guardrails \
   design-skills po-skills eng-skills; do
   claude plugin install "${plugin}@lippstack"
 done

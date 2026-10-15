@@ -37,6 +37,13 @@
       "category": "mod"
     },
     {
+      "name": "guardrails",
+      "source": "./plugins/guardrails",
+      "description": "Mod: /careful asks before destructive shell commands; /freeze <path> blocks edits outside a folder. Enforced by hooks.",
+      "version": "0.1.0",
+      "category": "mod"
+    },
+    {
       "name": "design-skills",
       "source": "./plugins/design-skills",
       "description": "Skills: apple-design, review-animations, break-ui, prototype (Emil Kowalski) and hallmark (Nutlope) for better-looking web UI.",
@@ -53,8 +60,8 @@
     {
       "name": "eng-skills",
       "source": "./plugins/eng-skills",
-      "description": "Skills: investigate (root cause debugging, 3-strike rule), qa (exploratory verification with mandatory regression tests), ship (pre-flight checks, doc sync, PR), freeze and careful.",
-      "version": "0.1.1",
+      "description": "Skills: investigate (root cause debugging, 3-strike rule), qa (exploratory verification with mandatory regression tests), ship (pre-flight checks, doc sync, PR).",
+      "version": "0.2.0",
       "category": "skills"
     },
     {

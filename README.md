@@ -11,6 +11,7 @@ By [Filipe Moreira](https://filipemoreira.top).
 | [savvy-progress](plugins/savvy-progress) | Mod | `/agents-info` opens a live panel of subagents with model, context, tokens and time, plus the account's plan quota (5-hour and weekly). Each tier gets its own pixel Clawd costume. |
 | [stage-bar](plugins/stage-bar) | Mod | An animated bar above the prompt that tracks the stages of your task, one color per stage. Claude names the stages and moves the bar as it works. Try `/stages-demo`. |
 | [done-ping](plugins/done-ping) | Mod | A notification when a task of a minute or more finishes, or when Claude is waiting for a permission or your answer (macOS Notification Center / Linux & Windows terminal notification channel). |
+| [guardrails](plugins/guardrails) | Mod | Hooks, not requests: `/careful` (on by default) asks you before `rm -r`, `git reset --hard`, force-push, `DROP TABLE` and the like run; `/freeze <path>` refuses edits outside a folder. Works in bypass mode too. |
 | [where-line](plugins/where-line) | Mod | A status line under the prompt: project, git branch, model and how full the context is (🟢 🟡 🔴). |
 
 ## Skills
@@ -19,7 +20,7 @@ By [Filipe Moreira](https://filipemoreira.top).
 | :- | :- | :- |
 | [design-skills](plugins/design-skills) | Copied here | From [Emil Kowalski](https://github.com/emilkowalski/skills): `apple-design` (Apple-style motion, gestures and materials on the web), `review-animations`, `break-ui` (worst-case data) and `prototype` (several versions behind a picker). `hallmark` ([Nutlope](https://github.com/nutlope/hallmark)): pages that don't look AI-generated, with `audit`, `redesign` and `study`. |
 | [po-skills](plugins/po-skills) | Ours, plus two adapted | `jira-stories` and `release-notes` (ours): stories into Jira, finished work into release notes on Confluence. `brainstorming` (enriched with YC forcing questions) and `writing-plans` (with Decision Briefs and Ponytail debt tracking) from [obra/superpowers](https://github.com/obra/superpowers). |
-| [eng-skills](plugins/eng-skills) | Ours | Engineering, QA & delivery: `investigate` (systematic root cause debugging with the 3-strike rule), `qa` (exploratory verification across UI/API/CLI with mandatory regression tests), `ship` (pre-flight checks, doc sync, PR), `freeze` (scope boundary lock), and `careful` (destructive command guardrails). |
+| [eng-skills](plugins/eng-skills) | Ours | Engineering, QA & delivery: `investigate` (systematic root cause debugging with the 3-strike rule), `qa` (exploratory verification across UI/API/CLI with mandatory regression tests), and `ship` (pre-flight checks, doc sync, PR). `freeze` and `careful` live in the guardrails mod. |
 | ponytail | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | Lazy senior dev mode: the simplest code that works. YAGNI, stdlib first, no unrequested abstractions. Commands `/ponytail-audit`, `/ponytail-review` and more. |
 
 `design-skills` is copied into this repo; refresh it with [scripts/sync-vendor.sh](scripts/sync-vendor.sh). `po-skills` and `eng-skills` are maintained in this repo. `ponytail` is listed in our marketplace but installs straight from its own repo, so it always gets upstream updates.
@@ -82,6 +83,7 @@ claude plugin install savvy-progress@lippstack
 claude plugin install stage-bar@lippstack
 claude plugin install done-ping@lippstack
 claude plugin install where-line@lippstack
+claude plugin install guardrails@lippstack
 claude plugin install design-skills@lippstack
 claude plugin install po-skills@lippstack
 claude plugin install eng-skills@lippstack
@@ -141,9 +143,9 @@ Professional development practices built directly into the agent workflow:
 | :- | :- |
 | `investigate` | **The Iron Law of Debugging**: No fixes without proven root cause. Traces data flow backward. Enforces the **3-strike rule**: if 3 fix attempts fail, the agent hard-stops, admits the mental model was incomplete, and asks for guidance instead of thrashing. |
 | `qa` | **Exploratory Verification**: Systematically tests beyond the happy path (empty values, hostile inputs, duplicate clicks, interruptions). Enforces the **Golden Regression Rule**: every bug found must have an automated test that fails before the fix and passes after. |
-| `ship` | **Pre-flight & Delivery**: Sychronizes base branch, runs tests and typechecks, performs a Diataxis documentation sanity check (ensuring README/specs/docs match code changes), creates an atomic commit and opens a PR. |
-| `freeze <path>` | **Scope Boundary**: Locks edits to a specific directory so the agent cannot accidentally modify or "fix" unrelated files. |
-| `careful` | **Destructive Command Guardrail**: Warns and requests explicit confirmation before running dangerous commands (`rm -rf`, `DROP TABLE`, `git reset --hard`, force-push). |
+| `ship` | **Pre-flight & Delivery** (only when you call `/ship`): Synchronizes base branch, runs tests and typechecks, performs a Diataxis documentation sanity check (ensuring README/specs/docs match code changes), creates an atomic commit and opens a PR. |
+
+`/freeze <path>` and `/careful` come from the `guardrails` mod: hooks enforce them, so they hold even in bypass mode.
 
 ### Ponytail
 
@@ -178,6 +180,7 @@ On by default in every session, at the `full` level.
 - `/agents-info` opens or closes the panel of subagents and plan quota.
 - The stage bar appears by itself on tasks with 3 or more steps. `/stages-demo` shows it.
 - `done-ping` needs nothing: walk away during a long task and you get a notification when it's done or stuck on a question. Change the threshold and sound in `/config`. On macOS the first one may ask for permission; on Linux and Windows it depends on the terminal supporting notifications.
+- `guardrails` asks before a destructive command runs; `/careful off` silences it for the session. `/freeze src/auth` keeps edits inside that folder until `/freeze off`.
 - `where-line` sits under the prompt. When the dot turns 🔴, finish up or start a new session before the context compacts.
 - `/hookify` when Claude keeps doing something you don't want; `session-report` when you want to know where the plan went.
 

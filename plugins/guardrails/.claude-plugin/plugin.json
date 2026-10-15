@@ -1,0 +1,7 @@
+{
+  "name": "guardrails",
+  "version": "0.1.0",
+  "description": "Real guardrails, enforced by hooks: /careful asks you before a destructive shell command runs; /freeze <path> blocks edits outside a folder.",
+  "author": { "name": "lippstack" },
+  "types": "./types/index.d.ts"
+}

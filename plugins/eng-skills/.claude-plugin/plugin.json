@@ -1,7 +1,7 @@
 {
   "name": "eng-skills",
-  "version": "0.1.1",
-  "description": "Engineering, QA and delivery skills: investigate (systematic debugging with 3-strike rule), qa (exploratory verification with mandatory regression tests), ship (pre-flight checks, doc sync, and PR creation), freeze (scope locking), and careful (destructive command guardrails).",
+  "version": "0.2.0",
+  "description": "Engineering, QA and delivery skills: investigate (systematic debugging with 3-strike rule), qa (exploratory verification with mandatory regression tests), and ship (pre-flight checks, doc sync, and PR creation).",
   "author": {
     "name": "lippstack"
   }
