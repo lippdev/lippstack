@@ -155,7 +155,7 @@ If a chosen task or step takes an intentional shortcut (Completeness ≤ 7) for 
   ```ts
   // shortcut: in-memory state only, upgrade to Redis when multi-instance is needed
   ```
-- This directly links into ponytail's debt ledger (`/ponytail-debt`) so trade-offs are transparent and tracked.
+- With ponytail installed, `/ponytail-debt` lists these as a debt ledger; without it, `grep -rn "shortcut:"` does the same.
 
 ## What a Step Contains
 
@@ -220,3 +220,5 @@ them to review the plan and choose an execution method before implementation.
 **If Subagent-driven chosen:** dispatch one fresh subagent per task with the task text and the files it names; after each, have a fresh subagent review that task's diff against the plan before starting the next. End with one review of the whole branch.
 
 **If Native chosen:** work through the tasks yourself in order, running each task's tests before checking it off. End with one fresh subagent reviewing the whole branch against the plan.
+
+**Without a subagent tool:** offer Native only, and do the final review yourself in a separate pass that rereads the plan and the whole diff from scratch.

@@ -8,7 +8,7 @@ argument-hint: "[project + sprint, version or dates]"
 
 Turn finished Jira work into notes people read. Everything in the notes must come from the issues; when an issue does not say why it matters, say less rather than invent it.
 
-Uses the Atlassian connector (Jira search, Confluence pages). If it is not connected, stop and say so.
+Uses an Atlassian/Jira MCP server or connector (Jira search, Confluence pages). If it is not connected, stop and say so.
 
 ## 1. Find the work
 

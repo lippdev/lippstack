@@ -1,49 +1,92 @@
 #!/usr/bin/env bash
-# Installs the lippstack mods on macOS and Linux. Run it from the repo folder.
+# Installs lippstack on macOS and Linux. Run it from the repo folder.
+#
+#   ./setup.sh                              Claude Code: mods, skills and plugins
+#   ./setup.sh --agents codex,gemini-cli    also the skills for other agents (npx skills)
+#
+# Agent ids: codex, gemini-cli, kimi-code-cli, opencode, cursor, github-copilot, ...
+# ('*' for every agent the skills CLI knows). Mods are Claude Code only.
 set -euo pipefail
-
-# Check for claude CLI
-if ! command -v claude >/dev/null 2>&1; then
-  echo "Error: 'claude' CLI is not found in PATH. Please install Claude Code first." >&2
-  exit 1
-fi
 
 here="$(cd "$(dirname "$0")" && pwd)"
 
-echo "==> Registering lippstack marketplace..."
-claude plugin marketplace add "$here"
+LIPPSTACK_PLUGINS="savvy-progress stage-bar done-ping where-line guardrails design-skills po-skills eng-skills"
+# Dean Peters' PM skills (CC BY-NC-SA 4.0): only the ones we use, out of 77.
+PM_SKILLS="user-story user-story-splitting epic-breakdown-advisor epic-hypothesis
+  prd-development prioritization-advisor roadmap-planning discovery-process
+  jobs-to-be-done problem-statement incoming-request-advisor stakeholder-mapping"
+OFFICIAL_PLUGINS="hookify claude-md-management session-report playwright"
 
-echo "==> Installing lippstack plugins and skills..."
-for plugin in \
-  savvy-progress stage-bar done-ping where-line guardrails \
-  design-skills po-skills eng-skills; do
-  claude plugin install "${plugin}@lippstack"
+agents=""
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --agents) agents="${2:-}"; shift 2 ;;
+    --agents=*) agents="${1#--agents=}"; shift ;;
+    -h|--help) sed -n '2,8p' "$0"; exit 0 ;;
+    *) echo "Unknown option: $1 (see ./setup.sh --help)" >&2; exit 1 ;;
+  esac
 done
 
-# Third-party plugin, pulled from its own GitHub repo so it stays current.
-echo "==> Installing ponytail..."
-claude plugin install ponytail@lippstack
+install_claude() {
+  echo "==> Registering lippstack marketplace..."
+  claude plugin marketplace add "$here"
 
-# Dean Peters' PM skills (CC BY-NC-SA 4.0): from their own marketplace, only the ones we use.
-echo "==> Registering PM skills marketplace..."
-claude plugin marketplace add deanpeters/Product-Manager-Skills
-for skill in \
-  user-story user-story-splitting epic-breakdown-advisor epic-hypothesis \
-  prd-development prioritization-advisor roadmap-planning discovery-process \
-  jobs-to-be-done problem-statement incoming-request-advisor stakeholder-mapping; do
-  claude plugin install "$skill@pm-skills"
-done
+  echo "==> Installing lippstack plugins and skills..."
+  for plugin in $LIPPSTACK_PLUGINS; do
+    claude plugin install "${plugin}@lippstack"
+  done
 
-# Anthropic's official plugins.
-echo "==> Registering official plugins..."
-claude plugin marketplace add anthropics/claude-plugins-official
-for plugin in hookify claude-md-management session-report playwright; do
-  claude plugin install "$plugin@claude-plugins-official"
-done
+  # Third-party plugin, pulled from its own GitHub repo so it stays current.
+  echo "==> Installing ponytail..."
+  claude plugin install ponytail@lippstack
 
-# Built into Claude Code: nothing to download, it only has to be switched on.
-echo "==> Enabling built-in plugins..."
-claude plugin enable cc-plugin-you-should-know@builtin
+  echo "==> Registering PM skills marketplace..."
+  claude plugin marketplace add deanpeters/Product-Manager-Skills
+  for skill in $PM_SKILLS; do
+    claude plugin install "$skill@pm-skills"
+  done
+
+  # Anthropic's official plugins.
+  echo "==> Registering official plugins..."
+  claude plugin marketplace add anthropics/claude-plugins-official
+  for plugin in $OFFICIAL_PLUGINS; do
+    claude plugin install "$plugin@claude-plugins-official"
+  done
+
+  # Built into Claude Code: nothing to download, it only has to be switched on.
+  echo "==> Enabling built-in plugins..."
+  claude plugin enable cc-plugin-you-should-know@builtin
+}
+
+install_agents() {
+  if ! command -v npx >/dev/null 2>&1; then
+    echo "Error: --agents needs Node.js (npx) to run the skills CLI." >&2
+    exit 1
+  fi
+  local flags=() a
+  IFS=',' read -r -a list <<< "$agents"
+  for a in "${list[@]}"; do flags+=(-a "$a"); done
+
+  echo "==> Installing lippstack skills for: $agents"
+  npx -y skills add "$here" -g "${flags[@]}" --skill '*' -y
+  echo "==> Installing ponytail for: $agents"
+  npx -y skills add DietrichGebert/ponytail -g "${flags[@]}" --skill '*' -y
+  echo "==> Installing PM skills for: $agents"
+  local pm=() s
+  for s in $PM_SKILLS; do pm+=(-s "$s"); done
+  npx -y skills add deanpeters/Product-Manager-Skills -g "${flags[@]}" "${pm[@]}" -y
+}
+
+if command -v claude >/dev/null 2>&1; then
+  install_claude
+elif [ -z "$agents" ]; then
+  echo "Error: 'claude' CLI is not found in PATH. Install Claude Code, or use --agents for other agents." >&2
+  exit 1
+else
+  echo "==> 'claude' not found: skipping Claude Code, installing skills only."
+fi
+
+if [ -n "$agents" ]; then install_agents; fi
 
 echo ""
-echo "Done! Restart Claude Code, or run /reload-plugins in an open session."
+echo "Done! Restart your agent, or run /reload-plugins in an open Claude Code session."

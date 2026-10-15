@@ -1,6 +1,8 @@
 # lippstack
 
-Mods and skills for Claude Code, tuned to how we work.
+[![CI](https://github.com/lippdev/lippstack/actions/workflows/ci.yml/badge.svg)](https://github.com/lippdev/lippstack/actions/workflows/ci.yml)
+
+Mods and skills for Claude Code, tuned to how we work. The skills also run in Codex, Gemini CLI, Kimi, OpenCode, Cursor and other agents: see [Other agents](#other-agents-codex-gemini-cli-kimi-opencode-cursor).
 
 By [Filipe Moreira](https://filipemoreira.top).
 
@@ -91,6 +93,37 @@ claude plugin install ponytail@lippstack
 ```
 
 Then restart Claude Code, or run `/reload-plugins` in an open session.
+
+### Other agents (Codex, Gemini CLI, Kimi, OpenCode, Cursor…)
+
+The skills follow the open [Agent Skills](https://agentskills.io) format, so any agent that reads `SKILL.md` can use them. The mods can't: they run on Claude Code's own hooks.
+
+| | Claude Code | Other agents |
+| :- | :- | :- |
+| Skills: `design-skills`, `po-skills`, `eng-skills`, ponytail, PM skills | ✅ | ✅ |
+| Mods: `savvy-progress`, `stage-bar`, `done-ping`, `where-line`, `guardrails` | ✅ | ❌ |
+| Official Anthropic plugins, `cc-plugin-you-should-know` | ✅ | ❌ |
+
+From a clone, add `--agents` with the agent ids. Claude Code is installed too when its CLI is present, and skipped when it isn't:
+
+```bash
+./setup.sh --agents codex,gemini-cli,kimi-code-cli
+```
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\setup.ps1 -Agents codex,gemini-cli,kimi-code-cli
+```
+
+Or without a clone, with the [skills CLI](https://github.com/vercel-labs/skills) (needs Node.js):
+
+```bash
+npx skills add lippdev/lippstack -g                       # pick agents and skills interactively
+npx skills add lippdev/lippstack -g -a codex -a opencode --skill '*' -y
+npx skills add DietrichGebert/ponytail -g --skill '*'
+npx skills add deanpeters/Product-Manager-Skills -g -s user-story -s prd-development   # pick the PM skills you want
+```
+
+Common ids: `codex`, `gemini-cli`, `kimi-code-cli`, `opencode`, `cursor`, `github-copilot`, `windsurf`, `antigravity`; `'*'` targets every agent the CLI knows. A few things differ outside Claude Code: `/skill-name` may be spelled differently (Kimi uses `/skill:name`), skills that offer subagents fall back to doing the work in a fresh pass, and `jira-stories` / `release-notes` need an Atlassian MCP server in that agent.
 
 ## How to use
 

@@ -1,6 +1,6 @@
 {
   "name": "po-skills",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Product owner skills: brainstorming (with YC forcing questions) and writing-plans (with decision briefs and ponytail debt tracking) take an idea to an approved design and plan; jira-stories and release-notes put the work in Jira and Confluence.",
   "author": {
     "name": "lippstack"

@@ -1,6 +1,6 @@
 ---
 name: ship
-description: Pre-flight release workflow. Verifies clean git status, runs test suites, checks documentation synchronization (Diataxis sanity check), creates atomic commit, pushes branch, and opens a Pull Request.
+description: Pre-flight release workflow. Verifies clean git status, runs test suites, checks documentation synchronization (Diataxis sanity check), creates atomic commit, pushes branch, and opens a Pull Request. Only runs when the user explicitly asks to ship; never start it on your own, since it pushes.
 disable-model-invocation: true
 argument-hint: "[optional PR title or target branch]"
 ---
@@ -57,7 +57,7 @@ Craft an atomic, conventional commit:
 - Provide a clear bulleted list in the commit body:
   - What changed.
   - Why the change was made.
-  - Any architectural trade-offs or `shortcut:` annotations left for `ponytail-debt`.
+  - Any architectural trade-offs or `shortcut:` annotations (listed by `/ponytail-debt` if ponytail is installed).
 
 ---
 
@@ -84,4 +84,4 @@ Craft an atomic, conventional commit:
 ## 6. Next Steps
 
 - If working with Jira/Confluence: suggest running `release-notes` to update the release notes on Confluence.
-- If running under review: suggest running `/ponytail-review` to double-check the final diff.
+- If ponytail is installed: suggest `/ponytail-review` to double-check the final diff; otherwise offer a fresh review of the diff.

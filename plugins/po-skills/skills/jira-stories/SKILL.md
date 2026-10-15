@@ -8,7 +8,7 @@ argument-hint: "[epic key, feature or PRD]"
 
 Write the stories, show them, and create them in Jira only after the user says yes. The draft is cheap; cards in someone's backlog are not.
 
-Uses the Atlassian connector (tools such as `getAccessibleAtlassianResources`, `createJiraIssue`, `searchJiraIssuesUsingJql`). If it is not connected, stop and say so; still offer the stories as text.
+Uses an Atlassian/Jira MCP server or connector (tools such as `getAccessibleAtlassianResources`, `createJiraIssue`, `searchJiraIssuesUsingJql`). If it is not connected, stop and say so; still offer the stories as text.
 
 ## 1. Gather
 
