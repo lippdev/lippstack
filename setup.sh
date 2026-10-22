@@ -39,6 +39,8 @@ install_claude() {
   # Third-party plugin, pulled from its own GitHub repo so it stays current.
   echo "==> Installing ponytail..."
   claude plugin install ponytail@lippstack
+  echo "==> Installing humanizer..."
+  claude plugin install humanizer@lippstack
 
   echo "==> Registering PM skills marketplace..."
   claude plugin marketplace add deanpeters/Product-Manager-Skills
@@ -71,6 +73,8 @@ install_agents() {
   npx -y skills add "$here" -g "${flags[@]}" --skill '*' -y
   echo "==> Installing ponytail for: $agents"
   npx -y skills add DietrichGebert/ponytail -g "${flags[@]}" --skill '*' -y
+  echo "==> Installing humanizer for: $agents"
+  npx -y skills add blader/humanizer -g "${flags[@]}" --skill '*' -y
   echo "==> Installing PM skills for: $agents"
   local pm=() s
   for s in $PM_SKILLS; do pm+=(-s "$s"); done

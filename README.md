@@ -24,8 +24,9 @@ By [Filipe Moreira](https://filipemoreira.top).
 | [po-skills](plugins/po-skills) | Ours, plus two adapted | `jira-stories` and `release-notes` (ours): stories into Jira, finished work into release notes on Confluence. `brainstorming` (enriched with YC forcing questions) and `writing-plans` (with Decision Briefs and Ponytail debt tracking) from [obra/superpowers](https://github.com/obra/superpowers). |
 | [eng-skills](plugins/eng-skills) | Ours | Engineering, QA & delivery: `investigate` (systematic root cause debugging with the 3-strike rule), `qa` (exploratory verification across UI/API/CLI with mandatory regression tests), and `ship` (pre-flight checks, doc sync, PR). `freeze` and `careful` live in the guardrails mod. |
 | ponytail | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | Lazy senior dev mode: the simplest code that works. YAGNI, stdlib first, no unrequested abstractions. Commands `/ponytail-audit`, `/ponytail-review` and more. |
+| humanizer | [blader/humanizer](https://github.com/blader/humanizer) | Rewrites AI-sounding text so it reads like the writer, without changing what it says. Based on Wikipedia's "Signs of AI writing". |
 
-`design-skills` is copied into this repo; refresh it with [scripts/sync-vendor.sh](scripts/sync-vendor.sh). `po-skills` and `eng-skills` are maintained in this repo. `ponytail` is listed in our marketplace but installs straight from its own repo, so it always gets upstream updates.
+`design-skills` is copied into this repo; refresh it with [scripts/sync-vendor.sh](scripts/sync-vendor.sh). `po-skills` and `eng-skills` are maintained in this repo. `ponytail` and `humanizer` are listed in our marketplace but install straight from its own repo, so they always get upstream updates.
 
 ### PM skills by Dean Peters
 
@@ -90,6 +91,7 @@ claude plugin install design-skills@lippstack
 claude plugin install po-skills@lippstack
 claude plugin install eng-skills@lippstack
 claude plugin install ponytail@lippstack
+claude plugin install humanizer@lippstack
 ```
 
 Then restart Claude Code, or run `/reload-plugins` in an open session.
@@ -100,7 +102,7 @@ The skills follow the open [Agent Skills](https://agentskills.io) format, so any
 
 | | Claude Code | Other agents |
 | :- | :- | :- |
-| Skills: `design-skills`, `po-skills`, `eng-skills`, ponytail, PM skills | ✅ | ✅ |
+| Skills: `design-skills`, `po-skills`, `eng-skills`, ponytail, humanizer, PM skills | ✅ | ✅ |
 | Mods: `savvy-progress`, `stage-bar`, `done-ping`, `where-line`, `guardrails` | ✅ | ❌ |
 | Official Anthropic plugins, `cc-plugin-you-should-know` | ✅ | ❌ |
 
@@ -120,6 +122,7 @@ Or without a clone, with the [skills CLI](https://github.com/vercel-labs/skills)
 npx skills add lippdev/lippstack -g                       # pick agents and skills interactively
 npx skills add lippdev/lippstack -g -a codex -a opencode --skill '*' -y
 npx skills add DietrichGebert/ponytail -g --skill '*'
+npx skills add blader/humanizer -g --skill '*'
 npx skills add deanpeters/Product-Manager-Skills -g -s user-story -s prd-development   # pick the PM skills you want
 ```
 
@@ -144,7 +147,7 @@ The skills are meant to be used in this order. Skip the steps a small task doesn
 | 7. Build it | `ponytail` (always on), `/freeze`, `investigate` | "Run the plan" / "investigate why the worker crashes" | Smallest code that does the job. When debugging: Iron Law (root cause first, 3-strike rule) and scope freezing |
 | 8. Verify it | `qa`, `/ponytail-review`, `hallmark audit`, `break-ui` | "QA this new endpoint" / "break the portfolio card" / "/ponytail-review" | Adversarial exploration beyond happy path; mandatory automated regression tests for any bug found; visual & code reviews |
 | 9. Ship it | `ship` | "Ship this feature" | Pre-flight git cleanliness, full test pass, Diataxis doc synchronization, atomic commit, push and PR |
-| 10. Tell people | `release-notes` | "Release notes for sprint 42 of INV" | A team version and a business version, published to Confluence after you approve |
+| 10. Tell people | `release-notes`, `humanizer` | "Release notes for sprint 42 of INV" / "humanize the PR description" | A team version and a business version, published to Confluence after you approve; then text that doesn't read as AI-written |
 
 ### Product (PM skills)
 
@@ -194,6 +197,27 @@ On by default in every session, at the `full` level.
 | `/ponytail-audit` | The same review over the whole repo, ranked |
 | `/ponytail-debt` | Lists every `shortcut:` comment it left, as a debt ledger |
 | `/ponytail-gain`, `/ponytail-help` | Benchmark numbers; quick reference |
+
+### Humanizer
+
+Takes text an AI wrote and rewrites it so it reads like a person wrote it, keeping the meaning. It is built on Wikipedia's "Signs of AI writing" and checks for 26 patterns. The five strongest: "not X but Y", one-line closers ("Let that sink in."), sayings that sound deep, a staged run-up ("Here's the thing."), and arguing with no one. It edits for human readers. It is not a way to beat AI detectors, and the author says detectors still flag most of its output.
+
+In Claude Code it answers to `/humanizer:humanizer`; other agents use `/humanizer`. You can also just ask in plain language.
+
+| Say or type | What happens |
+| :- | :- |
+| `/humanizer:humanizer` and paste text | Rewrites the text and keeps what it says. Doesn't invent facts |
+| "Humanize the prose in docs/launch-post.md" | Rewrites a file's prose |
+| Add a sample of your own writing | The rewrite follows your voice instead of a generic one |
+
+Where it fits in the workflow:
+
+- **Step 10, tell people.** Run it on the team and business versions of the release notes, and on the PR description `ship` writes, before you publish.
+- **Steps 3 to 6, documents.** PRDs, problem statements and design docs written by an agent pick up the same tics. One pass before you share them with people outside the session.
+- **Messages and posts.** Emails to stakeholders, announcements, LinkedIn, README intros: anything with your name on it.
+- **Don't run it on code, specs or plans** that an agent will read next. They need precision, not a voice.
+
+It only edits text you point it at. Nothing runs by itself.
 
 ### Design
 

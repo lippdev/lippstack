@@ -51,6 +51,8 @@ function Install-Claude {
 
     Write-Host "==> Installing ponytail..." -ForegroundColor Cyan
     Invoke-Claude plugin install ponytail@lippstack
+    Write-Host "==> Installing humanizer..." -ForegroundColor Cyan
+    Invoke-Claude plugin install humanizer@lippstack
 
     Write-Host "==> Registering PM skills marketplace..." -ForegroundColor Cyan
     Invoke-Claude plugin marketplace add deanpeters/Product-Manager-Skills
@@ -83,6 +85,8 @@ function Install-Agents {
     Invoke-Native npx -y skills add "$here" -g @flags --skill "*" -y
     Write-Host "==> Installing ponytail for: $($list -join ', ')" -ForegroundColor Cyan
     Invoke-Native npx -y skills add DietrichGebert/ponytail -g @flags --skill "*" -y
+    Write-Host "==> Installing humanizer for: $($list -join ', ')" -ForegroundColor Cyan
+    Invoke-Native npx -y skills add blader/humanizer -g @flags --skill "*" -y
     Write-Host "==> Installing PM skills for: $($list -join ', ')" -ForegroundColor Cyan
     Invoke-Native npx -y skills add deanpeters/Product-Manager-Skills -g @flags @pm -y
 }

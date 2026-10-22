@@ -72,6 +72,15 @@
       },
       "description": "Lazy senior dev mode: the simplest code that works, YAGNI, stdlib first. Tracks upstream.",
       "category": "skills"
+    },
+    {
+      "name": "humanizer",
+      "source": {
+        "source": "github",
+        "repo": "blader/humanizer"
+      },
+      "description": "Rewrites AI-sounding text so it reads like the writer, without changing what it says. Tracks upstream.",
+      "category": "skills"
     }
   ]
 }
