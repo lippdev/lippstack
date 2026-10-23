@@ -20,7 +20,7 @@ By [Filipe Moreira](https://filipemoreira.top).
 
 | Plugin | Source | What it does |
 | :- | :- | :- |
-| [design-skills](plugins/design-skills) | Copied here | From [Emil Kowalski](https://github.com/emilkowalski/skills): `apple-design` (Apple-style motion, gestures and materials on the web), `review-animations`, `break-ui` (worst-case data) and `prototype` (several versions behind a picker). `hallmark` ([Nutlope](https://github.com/nutlope/hallmark), 2.0): pages that don't look AI-generated, with `audit` and `redesign`. |
+| [design-skills](plugins/design-skills) | Copied here | From [Emil Kowalski](https://github.com/emilkowalski/skills): `apple-design` (Apple-style motion, gestures and materials on the web), `review-animations`, `break-ui` (worst-case data), `prototype` (several versions behind a picker) and `animation-performance` (animations that drop frames). `hallmark` ([Nutlope](https://github.com/nutlope/hallmark), 2.0): pages that don't look AI-generated, with `audit` and `redesign`. |
 | [po-skills](plugins/po-skills) | Ours, plus two adapted | `jira-stories` and `release-notes` (ours): stories into Jira, finished work into release notes on Confluence. `brainstorming` (enriched with YC forcing questions) and `writing-plans` (with Decision Briefs and Ponytail debt tracking) from [obra/superpowers](https://github.com/obra/superpowers). |
 | [eng-skills](plugins/eng-skills) | Ours | Engineering, QA & delivery: `investigate` (systematic root cause debugging with the 3-strike rule), `qa` (exploratory verification across UI/API/CLI with mandatory regression tests), and `ship` (pre-flight checks, doc sync, PR). `freeze` and `careful` live in the guardrails mod. |
 | ponytail | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | Lazy senior dev mode: the simplest code that works. YAGNI, stdlib first, no unrequested abstractions. Commands `/ponytail-audit`, `/ponytail-review` and more. |
@@ -104,7 +104,7 @@ The skills follow the open [Agent Skills](https://agentskills.io) format, so any
 
 | | Claude Code | Other agents |
 | :- | :- | :- |
-| Skills: `design-skills`, `po-skills`, `eng-skills`, ponytail, humanizer, PM skills | ✅ | ✅ |
+| Skills: `design-skills`, `po-skills`, `eng-skills`, ponytail, humanizer, video-editor-skills (optional), PM skills | ✅ | ✅ |
 | Mods: `savvy-progress`, `stage-bar`, `done-ping`, `where-line`, `guardrails` | ✅ | ❌ |
 | Official Anthropic plugins, `cc-plugin-you-should-know` | ✅ | ❌ |
 
@@ -148,7 +148,7 @@ The skills are meant to be used in this order. Skip the steps a small task doesn
 | 5. Design the build | `brainstorming` | "Let's build an export-to-PDF button for the report" | Questions one at a time with YC forcing perspectives (10-star, narrowest wedge, elimination), a size for the work, and a design doc in `docs/specs/` |
 | 6. Plan the build | `writing-plans` | "Write the plan for the approved design" | Small tasks with files, names and tests in `docs/plans/`, plus Decision Briefs and Ponytail `shortcut:` debt tags |
 | 7. Build it | `ponytail` (always on), `/freeze`, `investigate` | "Run the plan" / "investigate why the worker crashes" | Smallest code that does the job. When debugging: Iron Law (root cause first, 3-strike rule) and scope freezing |
-| 8. Verify it | `qa`, `/ponytail-review`, `hallmark audit`, `break-ui` | "QA this new endpoint" / "break the portfolio card" / "/ponytail-review" | Adversarial exploration beyond happy path; mandatory automated regression tests for any bug found; visual & code reviews |
+| 8. Verify it | `qa`, `/ponytail-review`, `hallmark audit`, `break-ui`, `animation-performance` | "QA this new endpoint" / "break the portfolio card" / "/ponytail-review" | Adversarial exploration beyond happy path; mandatory automated regression tests for any bug found; visual & code reviews |
 | 9. Ship it | `ship` | "Ship this feature" | Pre-flight git cleanliness, full test pass, Diataxis doc synchronization, atomic commit, push and PR |
 | 10. Tell people | `release-notes`, `humanizer` | "Release notes for sprint 42 of INV" / "humanize the PR description" | A team version and a business version, published to Confluence after you approve; then text that doesn't read as AI-written |
 
@@ -248,6 +248,7 @@ It fits the workflow beside step 10: use it for the video that goes with a relea
 | "Lock the system" (after a hallmark build) | Saves the design as a `design.md`; later pages reuse it |
 | "Make this sheet feel like iOS" | `apple-design`: springs, gestures, interruptible transitions, materials, reduced motion |
 | "Review the animations here" | `review-animations`: a strict review of the motion code |
+| "This animation is janky" | `animation-performance`: finds what costs the frame (layout properties, React re-renders, blur, `will-change`) and swaps it for a cheaper path |
 | "Break the portfolio card" | `break-ui`: renders the component with worst-case data (long names, empty lists, huge numbers) behind a toggle and lists what broke |
 | "Use prototype for a hold-to-delete button" | `prototype`: several genuinely different versions behind a picker. Runs only when named |
 

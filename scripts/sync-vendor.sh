@@ -20,6 +20,7 @@ sync emilkowalski/skills skills/apple-design apple-design
 sync emilkowalski/skills skills/review-animations review-animations
 sync emilkowalski/skills skills/break-ui break-ui
 sync emilkowalski/skills skills/prototype prototype
+sync emilkowalski/skills skills/animation-performance animation-performance
 sync nutlope/hallmark skills/hallmark hallmark
 
 echo "Update the commits in plugins/design-skills/README.md and bump the plugin version."

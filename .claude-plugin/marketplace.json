@@ -46,7 +46,7 @@
     {
       "name": "design-skills",
       "source": "./plugins/design-skills",
-      "description": "Skills: apple-design, review-animations, break-ui, prototype (Emil Kowalski) and hallmark (Nutlope) for better-looking web UI.",
+      "description": "Skills: apple-design, review-animations, break-ui, prototype, animation-performance (Emil Kowalski) and hallmark (Nutlope) for better-looking web UI.",
       "version": "0.3.0",
       "category": "skills"
     },
