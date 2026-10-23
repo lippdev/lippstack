@@ -25,8 +25,9 @@ By [Filipe Moreira](https://filipemoreira.top).
 | [eng-skills](plugins/eng-skills) | Ours | Engineering, QA & delivery: `investigate` (systematic root cause debugging with the 3-strike rule), `qa` (exploratory verification across UI/API/CLI with mandatory regression tests), and `ship` (pre-flight checks, doc sync, PR). `freeze` and `careful` live in the guardrails mod. |
 | ponytail | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | Lazy senior dev mode: the simplest code that works. YAGNI, stdlib first, no unrequested abstractions. Commands `/ponytail-audit`, `/ponytail-review` and more. |
 | humanizer | [blader/humanizer](https://github.com/blader/humanizer) | Rewrites AI-sounding text so it reads like the writer, without changing what it says. Based on Wikipedia's "Signs of AI writing". |
+| video-editor-skills (opt-in) | [appariciojunior/video-editor-skills](https://github.com/appariciojunior/video-editor-skills) | Claude as a first-pass video editor in DaVinci Resolve Studio: cuts retakes and dead air from the transcript, keeps B-roll, scores, captions, motion graphics, YouTube export. Needs Resolve Studio, ffmpeg, Python and a speech-to-text API. **CC BY-NC 4.0: no commercial use.** |
 
-`design-skills` is copied into this repo; refresh it with [scripts/sync-vendor.sh](scripts/sync-vendor.sh). `po-skills` and `eng-skills` are maintained in this repo. `ponytail` and `humanizer` are listed in our marketplace but install straight from its own repo, so they always get upstream updates.
+`design-skills` is copied into this repo; refresh it with [scripts/sync-vendor.sh](scripts/sync-vendor.sh). `po-skills` and `eng-skills` are maintained in this repo. `ponytail`, `humanizer` and `video-editor-skills` are listed in our marketplace but install straight from their own repos, so they always get upstream updates. `video-editor-skills` is not copied here on purpose: its CC BY-NC 4.0 license does not match this repo's MIT, and it is only useful if you edit video in Resolve. So `setup.sh` and `setup.ps1` do not install it; add it when you want it.
 
 ### PM skills by Dean Peters
 
@@ -92,6 +93,7 @@ claude plugin install po-skills@lippstack
 claude plugin install eng-skills@lippstack
 claude plugin install ponytail@lippstack
 claude plugin install humanizer@lippstack
+claude plugin install video-editor-skills@lippstack   # optional: DaVinci Resolve video editing, non-commercial license
 ```
 
 Then restart Claude Code, or run `/reload-plugins` in an open session.
@@ -123,6 +125,7 @@ npx skills add lippdev/lippstack -g                       # pick agents and skil
 npx skills add lippdev/lippstack -g -a codex -a opencode --skill '*' -y
 npx skills add DietrichGebert/ponytail -g --skill '*'
 npx skills add blader/humanizer -g --skill '*'
+npx skills add appariciojunior/video-editor-skills -g --skill '*'   # optional
 npx skills add deanpeters/Product-Manager-Skills -g -s user-story -s prd-development   # pick the PM skills you want
 ```
 
@@ -219,6 +222,21 @@ Where it fits in the workflow:
 - **Don't run it on code, specs or plans** that an agent will read next. They need precision, not a voice.
 
 It only edits text you point it at. Nothing runs by itself.
+
+### Video (optional)
+
+`video-editor-skills` is not installed by `setup.sh`. Install it with `claude plugin install video-editor-skills@lippstack` when you want it.
+
+You film and decide the taste; Claude does the first pass in DaVinci Resolve Studio. Raw footage is never modified, and Resolve only gets new timelines and clips. It needs Resolve Studio, ffmpeg, Python 3.9+ and a speech-to-text API with word timestamps.
+
+| Say | What happens |
+| :- | :- |
+| "Set up my video editor" | `video-editor-setup`: workspace folders, keys kept out of the chat, your Resolve template, the small scripts to build first |
+| "Edit the new video" | `edit-video`: transcribes `raw video/`, cuts retakes and dead air with vlog pacing, keeps B-roll, builds the timeline in Resolve |
+| "Add captions" / "graphics" / "music" | `captions`, `motion-overlays` (Remotion, optional Figma) and `music-and-sound` (Epidemic Sound MCP, optional) |
+| "Export for YouTube" | `youtube-export`: Deliver settings for good quality without huge files |
+
+It fits the workflow beside step 10: use it for the video that goes with a release (demo, class, vlog), then run `humanizer` on the title, description and captions text. The license is CC BY-NC 4.0, so keep it out of anything you sell.
 
 ### Design
 

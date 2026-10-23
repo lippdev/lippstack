@@ -81,6 +81,15 @@
       },
       "description": "Rewrites AI-sounding text so it reads like the writer, without changing what it says. Tracks upstream.",
       "category": "skills"
+    },
+    {
+      "name": "video-editor-skills",
+      "source": {
+        "source": "github",
+        "repo": "appariciojunior/video-editor-skills"
+      },
+      "description": "Skills: first-pass video editing in DaVinci Resolve Studio (transcript cuts, vlog pacing, B-roll, music, captions, motion graphics, YouTube export). CC BY-NC 4.0: not for commercial use. Opt-in; tracks upstream.",
+      "category": "skills"
     }
   ]
 }
