@@ -113,7 +113,9 @@ jobs:
           node -e '
             const fs = require("fs")
             const list = fs.readFileSync("installed.txt", "utf8")
-            const names = JSON.parse(fs.readFileSync(".claude-plugin/marketplace.json", "utf8")).plugins.map(p => p.name)
+            // Listed in the marketplace but left out of the installers on purpose.
+            const optional = ["video-editor-skills"]
+            const names = JSON.parse(fs.readFileSync(".claude-plugin/marketplace.json", "utf8")).plugins.map(p => p.name).filter(n => !optional.includes(n))
             const missing = names.filter(n => !list.includes(`${n}@lippstack`))
             if (missing.length) { console.error("not installed:", missing.join(", ")); process.exit(1) }
             console.log(`all ${names.length} lippstack plugins installed`)
