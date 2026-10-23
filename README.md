@@ -20,7 +20,7 @@ By [Filipe Moreira](https://filipemoreira.top).
 
 | Plugin | Source | What it does |
 | :- | :- | :- |
-| [design-skills](plugins/design-skills) | Copied here | From [Emil Kowalski](https://github.com/emilkowalski/skills): `apple-design` (Apple-style motion, gestures and materials on the web), `review-animations`, `break-ui` (worst-case data) and `prototype` (several versions behind a picker). `hallmark` ([Nutlope](https://github.com/nutlope/hallmark)): pages that don't look AI-generated, with `audit`, `redesign` and `study`. |
+| [design-skills](plugins/design-skills) | Copied here | From [Emil Kowalski](https://github.com/emilkowalski/skills): `apple-design` (Apple-style motion, gestures and materials on the web), `review-animations`, `break-ui` (worst-case data) and `prototype` (several versions behind a picker). `hallmark` ([Nutlope](https://github.com/nutlope/hallmark), 2.0): pages that don't look AI-generated, with `audit` and `redesign`. |
 | [po-skills](plugins/po-skills) | Ours, plus two adapted | `jira-stories` and `release-notes` (ours): stories into Jira, finished work into release notes on Confluence. `brainstorming` (enriched with YC forcing questions) and `writing-plans` (with Decision Briefs and Ponytail debt tracking) from [obra/superpowers](https://github.com/obra/superpowers). |
 | [eng-skills](plugins/eng-skills) | Ours | Engineering, QA & delivery: `investigate` (systematic root cause debugging with the 3-strike rule), `qa` (exploratory verification across UI/API/CLI with mandatory regression tests), and `ship` (pre-flight checks, doc sync, PR). `freeze` and `careful` live in the guardrails mod. |
 | ponytail | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | Lazy senior dev mode: the simplest code that works. YAGNI, stdlib first, no unrequested abstractions. Commands `/ponytail-audit`, `/ponytail-review` and more. |
@@ -166,7 +166,8 @@ Both need the Atlassian connector, and both show you the result before touching 
 ### Brainstorming and plans
 
 - `brainstorming` asks one question at a time. It uses YC-style forcing questions to uncover the **10-star vision**, the **narrowest wedge** (minimum slice of value), and what can be **eliminated** completely.
-- It sizes the work first: a quick task is just done, a small one is agreed in chat, and only a project gets a written design in `docs/specs/`.
+- It reads the project before its first question. Before it writes anything, it lays out two or three ways to build it, with the trade-offs and a recommendation, and you pick one.
+- It then sizes the work: a quick task is just done, a small change gets a short design doc, and a project gets the full one in `docs/specs/`. Both record the approaches considered and the one you chose.
 - For anything visual it can open a local page (`localhost`) with mockups side by side.
 - `writing-plans` produces bite-sized, testable tasks in `docs/plans/`. If architectural trade-offs or intentional shortcuts are taken, it frames a Decision Brief and marks the code with `shortcut: <reason>`, connecting straight into `ponytail-debt`.
 - At the end it asks how to run the plan: **subagent-driven** (one fresh agent per task plus review) or **native** (this session does it, review at the end).
@@ -223,10 +224,10 @@ It only edits text you point it at. Nothing runs by itself.
 
 | Ask | What happens |
 | :- | :- |
-| "Build a landing page for …" | `hallmark` picks a theme and a page structure that isn't the usual hero → 3 cards → CTA, and scores the result before handing it over |
+| "Build a landing page for …" | `hallmark` asks once about material, audience, use and tone, deals a theme and a page structure that isn't the usual hero → 3 cards → CTA, and runs its lint (`sloplint`, needs Node) until clean before handing it over. Given a URL or a running app, it screenshots the real product instead of mocking it |
 | `hallmark audit <file or folder>` | A ranked list of what looks generated. Edits nothing |
 | `hallmark redesign <target>` | New visual layer, same routes, copy and brand. Asks before deleting anything |
-| `hallmark study <URL or screenshot>` | Pulls out the structure, type and colors of a design you like; can save them as a `design.md` |
+| "Lock the system" (after a hallmark build) | Saves the design as a `design.md`; later pages reuse it |
 | "Make this sheet feel like iOS" | `apple-design`: springs, gestures, interruptible transitions, materials, reduced motion |
 | "Review the animations here" | `review-animations`: a strict review of the motion code |
 | "Break the portfolio card" | `break-ui`: renders the component with worst-case data (long names, empty lists, huge numbers) behind a toggle and lists what broke |

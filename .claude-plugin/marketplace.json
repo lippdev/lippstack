@@ -47,14 +47,14 @@
       "name": "design-skills",
       "source": "./plugins/design-skills",
       "description": "Skills: apple-design, review-animations, break-ui, prototype (Emil Kowalski) and hallmark (Nutlope) for better-looking web UI.",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "category": "skills"
     },
     {
       "name": "po-skills",
       "source": "./plugins/po-skills",
       "description": "Skills: brainstorming (with YC forcing questions) and writing-plans (with decision briefs and ponytail debt tracking), plus jira-stories and release-notes.",
-      "version": "0.3.1",
+      "version": "0.4.0",
       "category": "skills"
     },
     {
