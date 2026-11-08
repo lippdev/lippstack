@@ -34,5 +34,5 @@ jobs:
             ${{ steps.sync.outputs.log }}
             ```
 
-            Before merging: update the commits in `plugins/design-skills/README.md` and bump `design-skills` in `plugin.json` and `.claude-plugin/marketplace.json` (CI checks they match).
+            Before merging: bump `design-skills` in `plugin.json` and `.claude-plugin/marketplace.json` (CI checks they match).
           delete-branch: true

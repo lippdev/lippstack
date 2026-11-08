@@ -1,6 +1,6 @@
 {
   "name": "design-skills",
-  "version": "0.4.0",
-  "description": "Design skills we use: apple-design, review-animations, break-ui, prototype and animation-performance (Emil Kowalski) for Apple-style motion, motion review, worst-case data, UI variants and smooth frames, and hallmark (Nutlope) against generic AI-looking pages.",
+  "version": "0.5.0",
+  "description": "Design skills we use: apple-design, animate, choreograph, gestures, review-animations, remove-animations, animation-performance, break-ui and prototype (Emil Kowalski) for motion that feels right, drag and swipe, motion review and cleanup, smooth frames, worst-case data and UI variants, and hallmark (Nutlope) against generic AI-looking pages.",
   "author": { "name": "lippstack" }
 }

@@ -20,7 +20,7 @@ By [Filipe Moreira](https://filipemoreira.top).
 
 | Plugin | Source | What it does |
 | :- | :- | :- |
-| [design-skills](plugins/design-skills) | Copied here | From [Emil Kowalski](https://github.com/emilkowalski/skills): `apple-design` (Apple-style motion, gestures and materials on the web), `review-animations`, `break-ui` (worst-case data), `prototype` (several versions behind a picker) and `animation-performance` (animations that drop frames). `hallmark` ([Nutlope](https://github.com/nutlope/hallmark), 2.0): pages that don't look AI-generated, with `audit` and `redesign`. |
+| [design-skills](plugins/design-skills) | Copied here | From [Emil Kowalski](https://github.com/emilkowalski/skills): `apple-design` (Apple-style motion, gestures and materials on the web), `animate` (one animation, decided in order), `choreograph` (several elements moving together), `gestures` (drag, swipe, sheets), `review-animations`, `remove-animations` (cut motion you don't need), `animation-performance` (animations that drop frames), `break-ui` (worst-case data) and `prototype` (several versions behind a picker). `hallmark` ([Nutlope](https://github.com/nutlope/hallmark), 2.0): pages that don't look AI-generated, with `audit` and `redesign`. |
 | [po-skills](plugins/po-skills) | Ours, plus two adapted | `jira-stories` and `release-notes` (ours): stories into Jira, finished work into release notes on Confluence. `brainstorming` (enriched with YC forcing questions) and `writing-plans` (with Decision Briefs and Ponytail debt tracking) from [obra/superpowers](https://github.com/obra/superpowers). |
 | [eng-skills](plugins/eng-skills) | Ours | Engineering, QA & delivery: `investigate` (systematic root cause debugging with the 3-strike rule), `qa` (exploratory verification across UI/API/CLI with mandatory regression tests), and `ship` (pre-flight checks, doc sync, PR). `freeze` and `careful` live in the guardrails mod. |
 | ponytail | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | Lazy senior dev mode: the simplest code that works. YAGNI, stdlib first, no unrequested abstractions. Commands `/ponytail-audit`, `/ponytail-review` and more. |
@@ -247,6 +247,10 @@ It fits the workflow beside step 10: use it for the video that goes with a relea
 | `hallmark redesign <target>` | New visual layer, same routes, copy and brand. Asks before deleting anything |
 | "Lock the system" (after a hallmark build) | Saves the design as a `design.md`; later pages reuse it |
 | "Make this sheet feel like iOS" | `apple-design`: springs, gestures, interruptible transitions, materials, reduced motion |
+| "Animate this dropdown" | `animate`: decides whether it should move, then easing, duration and origin |
+| "Stagger this list" / "the hero entrance feels robotic" | `choreograph`: order, overlap and what stays still across the group |
+| "Make this card swipe to dismiss" | `gestures`: follows the finger 1:1, velocity-aware release, interruptible; Vaul for drawers |
+| "The app feels slow, too much animation" | `remove-animations`: deletes motion the interface doesn't need. Only subtracts |
 | "Review the animations here" | `review-animations`: a strict review of the motion code |
 | "This animation is janky" | `animation-performance`: finds what costs the frame (layout properties, React re-renders, blur, `will-change`) and swaps it for a cheaper path |
 | "Break the portfolio card" | `break-ui`: renders the component with worst-case data (long names, empty lists, huge numbers) behind a toggle and lists what broke |
