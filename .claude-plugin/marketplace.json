@@ -54,7 +54,7 @@
       "name": "po-skills",
       "source": "./plugins/po-skills",
       "description": "Skills: brainstorming (with YC forcing questions) and writing-plans (with decision briefs and ponytail debt tracking), plus jira-stories and release-notes.",
-      "version": "0.5.0",
+      "version": "0.5.1",
       "category": "skills"
     },
     {

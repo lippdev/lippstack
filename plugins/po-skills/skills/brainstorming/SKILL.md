@@ -1,6 +1,6 @@
 ---
 name: brainstorming
-description: "You MUST use this before any creative work - creating features, building components, adding functionality, modifying behavior, or planning anything new, in software or out of it (a talk, a business, a renovation)."
+description: "Design a feature or change before building it: reads the project, asks one question at a time until the idea is clear, lays out two or three approaches with YC forcing questions, sizes the work and writes a design doc in docs/specs/ for approval. Use when the user asks to brainstorm, design or think through something new, or starts a feature that has no spec yet. Not for small fixes, bugs or tasks with an approved plan."
 ---
 
 # Brainstorming

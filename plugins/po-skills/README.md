@@ -27,6 +27,7 @@ Because the rest is gone, these copies are edited:
 - Specs go to `docs/specs/` and plans to `docs/plans/`.
 - The worktree note is removed, and the end of `writing-plans` describes the two ways to run the plan (subagent-driven or in this session) inline instead of calling `subagent-driven-development` and `executing-plans`.
 - `brainstorming` includes YC forcing questions (10-star, narrowest wedge, desperate specificity, elimination).
+- `brainstorming` has its own `description`: upstream's says it must run before any creative work, which here would claim every coding request; ours triggers on design talk or a feature with no spec, and stays out of small fixes.
 - `writing-plans` formats Decision Briefs and annotates intentional shortcuts with `shortcut:` comments for `ponytail-debt`.
 
 So `scripts/sync-vendor.sh` does not touch them. To take a newer upstream version, copy it by hand and redo the edits above.
