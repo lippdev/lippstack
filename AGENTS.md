@@ -21,7 +21,7 @@ scripts/check.mjs                           consistency checks CI runs
 - **Versions move together.** Any change under `plugins/<name>/` bumps its `version` in both `plugins/<name>/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`. Patch for wording and fixes, minor for new skills or behaviour.
 - **A new plugin** goes in `marketplace.json`, `setup.sh` (`LIPPSTACK_PLUGINS`), `setup.ps1` (`$lippPlugins`), and the README: its table and the "Or by hand" block. `scripts/check.mjs` fails if one is missing.
 - **Skills stay agent-neutral.** `SKILL.md` needs `name` (equal to its folder; lowercase, digits, hyphens; ≤ 64) and `description` (≤ 1024 chars). Don't depend on one agent's tools without a fallback: subagents → "or do it yourself in a fresh pass"; ponytail → "if installed"; Jira → "an Atlassian MCP server". `disable-model-invocation: true` only works in Claude Code, so also say in the `description` that the skill runs only when explicitly asked.
-- **Mods** are Claude Code only (TypeScript against the `claude-code` hooks API). Every mod has tests.
+- **Mods** are Claude Code only (TypeScript against the `claude-code` hooks API). Every mod has tests in `plugins/<mod>/tests/`; `scripts/check.mjs` fails without them.
 - **Vendored skills** (`plugins/design-skills/skills/*`) are refreshed by `scripts/sync-vendor.sh`, which overwrites local edits. A weekly workflow opens a PR when upstream changes.
 - **Installers** must keep working on macOS (bash 3.2), Linux and Windows PowerShell 5.1+. In `setup.ps1`, run native commands through `Invoke-Native`/`Invoke-Claude` so a failure stops the script.
 - Write README and skill prose in plain English, short sentences, no marketing.

@@ -12,7 +12,7 @@
       "name": "savvy-progress",
       "source": "./plugins/savvy-progress",
       "description": "Mod: live agents panel with plan quota, tokens and time per subagent; one pixel Clawd costume per tier.",
-      "version": "1.2.0-lipp.1",
+      "version": "1.2.0-lipp.2",
       "category": "mod"
     },
     {

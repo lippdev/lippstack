@@ -80,6 +80,14 @@ for (const f of skills) {
 }
 
 // 4. Every local plugin is installed by both setup scripts and the README's manual steps.
+// Mods (plugins with hooks) are Claude Code only and every one of them has tests.
+for (const p of local) {
+  const dir = p.source.replace(/^\.\//, '')
+  if (!existsSync(join(root, dir, 'hooks'))) continue
+  const tests = files.filter(f => rel(f).startsWith(dir + '/tests/') && /\.test\.tsx?$/.test(f))
+  if (!tests.length) errors.push(`${p.name}: a mod with no tests; add plugins/${p.name}/tests/*.test.ts (claude plugin test)`)
+}
+
 const setupSh = read('setup.sh')
 const setupPs1 = read('setup.ps1')
 const byHand = /### Or by hand[\s\S]*?```bash\n([\s\S]*?)```/.exec(read('README.md'))?.[1] ?? ''

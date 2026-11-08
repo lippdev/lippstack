@@ -1,6 +1,6 @@
 {
   "name": "savvy-progress",
-  "version": "1.2.0-lipp.1",
+  "version": "1.2.0-lipp.2",
   "description": "Agents panel (/agents-info): running, finished and planned subagents with model, context, tokens and time, plus the account plan quota (5h and weekly). Fork of johnnyvizz/claude-kit savvy-progress with new Clawd costumes.",
   "author": {
     "name": "johnnyvizz",
