@@ -4,12 +4,12 @@ Third-party design skills, copied here so they install with the rest of lippstac
 
 | Skill | Source | What it does |
 | :- | :- | :- |
-| `apple-design` | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/main/skills/apple-design) @ `2d22863` | Apple's approach to interface design and physical motion, for the web: springs, gestures, sheets, materials, type. |
-| `review-animations` | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/main/skills/review-animations) @ `2d22863` | Reviews motion code against a high bar. Flags by default; approval is earned. |
-| `break-ui` | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/main/skills/break-ui) @ `2d22863` | Feeds a component worst-case data (long names, empty lists, huge numbers, emoji) behind a toggle and reports what broke, with fixes. |
-| `prototype` | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/main/skills/prototype) @ `2d22863` | Builds several genuinely different versions of a UI piece behind a live picker so you choose one. Only runs when called by name. |
-| `animation-performance` | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/main/skills/animation-performance) @ `2d22863` | Finds why an animation drops frames and fixes it: composite-only properties, CSS vs WAAPI vs rAF, Framer Motion's accelerated path, React re-renders per frame, `will-change`. |
-| `hallmark` | [nutlope/hallmark](https://github.com/nutlope/hallmark) @ `7ec8682` (2.0.0) | Pushes generated pages away from the generic AI look: a fixed floor of rules, a dealt theme, and a lint script (`sloplint`, needs Node) that must pass before it hands back. Builds from the real product when it can capture it. Verbs `audit` and `redesign`. |
+| `apple-design` | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/main/skills/apple-design) @ `5206a95` | Apple's approach to interface design and physical motion, for the web: springs, gestures, sheets, materials, type. |
+| `review-animations` | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/main/skills/review-animations) @ `5206a95` | Reviews motion code against a high bar. Flags by default; approval is earned. |
+| `break-ui` | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/main/skills/break-ui) @ `5206a95` | Feeds a component worst-case data (long names, empty lists, huge numbers, emoji) behind a toggle and reports what broke, with fixes. |
+| `prototype` | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/main/skills/prototype) @ `5206a95` | Builds several genuinely different versions of a UI piece behind a live picker so you choose one. Only runs when called by name. |
+| `animation-performance` | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/main/skills/animation-performance) @ `5206a95` | Finds why an animation drops frames and fixes it: composite-only properties, CSS vs WAAPI vs rAF, Framer Motion's accelerated path, React re-renders per frame, `will-change`. |
+| `hallmark` | [nutlope/hallmark](https://github.com/nutlope/hallmark) @ `407fa68` (2.0.0) | Pushes generated pages away from the generic AI look: a fixed floor of rules, a dealt theme, and a lint script (`sloplint`, needs Node) that must pass before it hands back. Builds from the real product when it can capture it. Verbs `audit` and `redesign`. |
 
 ## Install
 

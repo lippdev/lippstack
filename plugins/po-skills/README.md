@@ -19,7 +19,7 @@ Skills for the product side of the work: from idea to spec to plan.
 
 ## Where they come from
 
-`jira-stories` and `release-notes` are ours. `brainstorming` and `writing-plans` are adapted from [obra/superpowers](https://github.com/obra/superpowers) @ `2ce8aa1` (v7.0.1) (MIT, Jesse Vincent; the license sits in each skill folder), enriched with YC forcing questions and Ponytail debt integration. We left out the rest of Superpowers on purpose, including its start-of-session hook that makes Claude load a skill before every answer.
+`jira-stories` and `release-notes` are ours. `brainstorming` and `writing-plans` are adapted from [obra/superpowers](https://github.com/obra/superpowers) @ `22f0b46` (v7.0.2) (MIT, Jesse Vincent; the license sits in each skill folder), enriched with YC forcing questions and Ponytail debt integration. We left out the rest of Superpowers on purpose, including its start-of-session hook that makes Claude load a skill before every answer.
 
 Because the rest is gone, these copies are edited:
 
