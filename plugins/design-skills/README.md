@@ -15,6 +15,8 @@ Third-party design skills, copied here so they install with the rest of lippstac
 | `remove-animations` | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/main/skills/remove-animations) @ `5206a95` | Finds motion the interface doesn't need (keyboard actions, high-frequency surfaces, decoration) and deletes it. Only subtracts. |
 | `hallmark` | [nutlope/hallmark](https://github.com/nutlope/hallmark) @ `407fa68` (2.0.0) | Pushes generated pages away from the generic AI look: a fixed floor of rules, a dealt theme, and a lint script (`sloplint`, needs Node) that must pass before it hands back. Builds from the real product when it can capture it. Verbs `audit` and `redesign`. |
 
+| `unslop-ui` | [felipebasurto/unslop-ui](https://github.com/felipebasurto/unslop-ui) @ `cd89116` | Removes generic AI patterns from interface copy and charts; optional surface cleanup. Runs only when requested. |
+
 ## Install
 
 ```
