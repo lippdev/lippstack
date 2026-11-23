@@ -33,17 +33,33 @@ sync nutlope/hallmark skills/hallmark hallmark
 sync felipebasurto/unslop-ui skills/unslop-ui unslop-ui
 
 # Keep the explicit invocation restriction for agents that ignore the Claude flag.
-node - "$dest/unslop-ui/SKILL.md" <<'NODE'
+node - "$dest" <<'NODE'
 const fs = require('fs');
-const file = process.argv[2];
-const text = fs.readFileSync(file, 'utf8');
-const updated = text.replace(/^(description: )(.+)$/m, (_, prefix, value) => {
-  if (/only runs when explicitly/i.test(value)) return prefix + value;
-  const sentence = ' Only runs when explicitly requested.';
-  return prefix + (value.endsWith('"') ? value.slice(0, -1) + sentence + '"' : value + sentence);
-});
-if (updated === text && !/only runs when explicitly/i.test(text)) throw new Error(`Missing description in ${file}`);
-fs.writeFileSync(file, updated);
+const path = require('path');
+const dest = process.argv[2];
+for (const name of ['prototype', 'review-animations', 'unslop-ui']) {
+  const file = path.join(dest, name, 'SKILL.md');
+  let text = fs.readFileSync(file, 'utf8');
+  if (name === 'unslop-ui') {
+    text = text.replace(/Use when asked to clean up,[\s\S]*?as a final pass once you finish building or restyling a screen\./, 'Only runs when explicitly requested.');
+    if (!text.includes('disable-model-invocation: true')) text = text.replace(/^(description: .*)$/m, '$1\ndisable-model-invocation: true');
+  }
+  text = text.replace(/^(description: )(.+)$/m, (_, prefix, value) => {
+    if (/only runs when explicitly/i.test(value)) return prefix + value;
+    const sentence = ' Only runs when explicitly requested.';
+    return prefix + (value.endsWith('"') ? value.slice(0, -1) + sentence + '"' : value + sentence);
+  });
+  if (!/^description: .*only runs when explicitly/im.test(text)) throw new Error(`Missing explicit invocation description in ${file}`);
+  fs.writeFileSync(file, text);
+}
+for (const name of ['animate', 'gestures']) {
+  const file = path.join(dest, name, 'SKILL.md');
+  let text = fs.readFileSync(file, 'utf8');
+  text = text.replace('stop and read `../pick-ui-library/SKILL.md` to pick one', 'use `pick-ui-library` if installed, or choose an accessible established library yourself');
+  text = text.replace('When unsure, read `../pick-ui-library/SKILL.md`.', 'When unsure, use `pick-ui-library` if installed, or evaluate accessible libraries yourself.');
+  if (text.includes('`../pick-ui-library/SKILL.md`')) throw new Error(`Unexpected missing skill reference in ${file}`);
+  fs.writeFileSync(file, text);
+}
 NODE
 
 echo "Bump design-skills in its plugin.json and in .claude-plugin/marketplace.json."

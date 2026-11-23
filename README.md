@@ -246,7 +246,7 @@ It fits the workflow beside step 10: use it for the video that goes with a relea
 | `hallmark audit <file or folder>` | A ranked list of what looks generated. Edits nothing |
 | `hallmark redesign <target>` | New visual layer, same routes, copy and brand. Asks before deleting anything |
 | "Lock the system" (after a hallmark build) | Saves the design as a `design.md`; later pages reuse it |
-| `unslop-ui <file or folder>` | Removes generic AI patterns from interface copy and charts; add `--surface` for optional visual cleanup. Requires Python 3.9+ |
+| `unslop-ui <file or folder>` | Removes generic AI patterns from interface copy and charts; add `--surface` for optional visual cleanup |
 | "Make this sheet feel like iOS" | `apple-design`: springs, gestures, interruptible transitions, materials, reduced motion |
 | "Animate this dropdown" | `animate`: decides whether it should move, then easing, duration and origin |
 | "Stagger this list" / "the hero entrance feels robotic" | `choreograph`: order, overlap and what stays still across the group |
