@@ -1,6 +1,6 @@
 {
   "name": "design-skills",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Design skills we use: apple-design, animate, choreograph, gestures, review-animations, remove-animations, animation-performance, break-ui and prototype (Emil Kowalski) for motion that feels right, drag and swipe, motion review and cleanup, smooth frames, worst-case data and UI variants, and hallmark (Nutlope) against generic AI-looking pages. Includes unslop-ui (Felipe Basurto) for interface copy and chart cleanup.",
   "author": {
     "name": "lippstack"
