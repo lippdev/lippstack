@@ -44,6 +44,13 @@
       "category": "mod"
     },
     {
+      "name": "cloud-rain",
+      "source": "./plugins/cloud-rain",
+      "description": "Mod: theme for the desktop and mobile apps. A pixel-art night sky with slow digit rain, in black or navy.",
+      "version": "0.1.0",
+      "category": "mod"
+    },
+    {
       "name": "design-skills",
       "source": "./plugins/design-skills",
       "description": "Skills: apple-design, animate, choreograph, gestures, review-animations, remove-animations, animation-performance, break-ui, prototype (Emil Kowalski) and hallmark (Nutlope) for better-looking web UI. Includes unslop-ui for interface copy and chart cleanup.",
