@@ -15,6 +15,7 @@ By [Filipe Moreira](https://filipemoreira.top).
 | [done-ping](plugins/done-ping) | Mod | A notification when a task of a minute or more finishes, or when Claude is waiting for a permission or your answer (macOS Notification Center / Linux & Windows terminal notification channel). |
 | [guardrails](plugins/guardrails) | Mod | Hooks, not requests: `/careful` (on by default) asks you before `rm -r`, `git reset --hard`, force-push, `DROP TABLE` and the like run; `/freeze <path>` refuses edits outside a folder. Works in bypass mode too. |
 | [where-line](plugins/where-line) | Mod | A status line under the prompt: project, git branch, model and how full the context is (🟢 🟡 🔴). |
+| [cloud-rain](plugins/cloud-rain) | Mod | A theme for the desktop and mobile apps: a pixel-art night sky with slow digit rain behind the chat. `/cloud-rain` switches between black and navy. |
 
 ## Skills
 
@@ -88,6 +89,7 @@ claude plugin install stage-bar@lippstack
 claude plugin install done-ping@lippstack
 claude plugin install where-line@lippstack
 claude plugin install guardrails@lippstack
+claude plugin install cloud-rain@lippstack
 claude plugin install design-skills@lippstack
 claude plugin install po-skills@lippstack
 claude plugin install eng-skills@lippstack
@@ -105,7 +107,7 @@ The skills follow the open [Agent Skills](https://agentskills.io) format, so any
 | | Claude Code | Other agents |
 | :- | :- | :- |
 | Skills: `design-skills`, `po-skills`, `eng-skills`, ponytail, humanizer, video-editor-skills (optional), PM skills | ✅ | ✅ |
-| Mods: `savvy-progress`, `stage-bar`, `done-ping`, `where-line`, `guardrails` | ✅ | ❌ |
+| Mods: `savvy-progress`, `stage-bar`, `done-ping`, `where-line`, `guardrails`, `cloud-rain` | ✅ | ❌ |
 | Official Anthropic plugins, `cc-plugin-you-should-know` | ✅ | ❌ |
 
 From a clone, add `--agents` with the agent ids. Claude Code is installed too when its CLI is present, and skipped when it isn't:
@@ -264,6 +266,7 @@ It fits the workflow beside step 10: use it for the video that goes with a relea
 - `done-ping` needs nothing: walk away during a long task and you get a notification when it's done or stuck on a question. Change the threshold and sound in `/config`. On macOS the first one may ask for permission; on Linux and Windows it depends on the terminal supporting notifications.
 - `guardrails` asks before a destructive command runs; `/careful off` silences it for the session. `/freeze src/auth` keeps edits inside that folder until `/freeze off`.
 - `where-line` sits under the prompt. When the dot turns 🔴, finish up or start a new session before the context compacts.
+- `cloud-rain` themes the desktop and mobile apps; the terminal draws no themes. `/cloud-rain navy` or `/cloud-rain black` picks a version, and the choice is kept.
 - `/hookify` when Claude keeps doing something you don't want; `session-report` when you want to know where the plan went.
 
 ## Credits

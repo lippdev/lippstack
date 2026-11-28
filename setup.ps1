@@ -16,6 +16,7 @@ $lippPlugins = @(
     "done-ping@lippstack",
     "where-line@lippstack",
     "guardrails@lippstack",
+    "cloud-rain@lippstack",
     "design-skills@lippstack",
     "po-skills@lippstack",
     "eng-skills@lippstack"

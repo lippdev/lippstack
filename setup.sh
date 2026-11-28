@@ -10,7 +10,7 @@ set -euo pipefail
 
 here="$(cd "$(dirname "$0")" && pwd)"
 
-LIPPSTACK_PLUGINS="savvy-progress stage-bar done-ping where-line guardrails design-skills po-skills eng-skills"
+LIPPSTACK_PLUGINS="savvy-progress stage-bar done-ping where-line guardrails cloud-rain design-skills po-skills eng-skills"
 # Dean Peters' PM skills (CC BY-NC-SA 4.0): only the ones we use, out of 77.
 PM_SKILLS="user-story user-story-splitting epic-breakdown-advisor epic-hypothesis
   prd-development prioritization-advisor roadmap-planning discovery-process
